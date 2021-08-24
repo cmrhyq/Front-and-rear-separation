@@ -1,0 +1,43 @@
+management:
+  endpoint:
+    health:
+      show-details: always
+  endpoints:
+    jmx:
+      exposure:
+        include: '*'
+    web:
+      exposure:
+        include: '*'
+  server:
+    port: 7778
+
+
+server:
+  port: 7778
+
+
+spring:
+  application:
+    name: graduation-project
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    name: defaultDataSource
+    password: alandb
+    url: jdbc:mysql://182.92.65.196:3306/alandb?characterEncoding=utf-8&useSSl=false&allowPublicKeyRetrieval=true
+    username: alan0901
+  thymeleaf:
+    cache: true
+    check-template: true
+    check-template-location: true
+    servlet:
+      content-type: text/html
+    enabled: true
+    encoding: UTF-8
+    excluded-view-names: ''
+    mode: HTML5
+    prefix: classpath:/templates/
+    suffix: .html
+mybatis:
+  mapper-locations: classpath:mapping/*Mapper.xml
+  type-aliases-package: com.alan.demo.mapper
