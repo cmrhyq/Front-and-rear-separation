@@ -43,6 +43,7 @@ import {successTips, failTips, infoTips, warnTips, saveSuccess} from "../assets/
 import axios from 'axios'
 import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
+import process from "shelljs";
 
 export default {
   name: "Login",
@@ -83,17 +84,15 @@ export default {
      * 登录
      */
     doLogin() {
-      var url = 'http://localhost:7778'
       // 通过正则验证手机号正确性
       var phoneVerify = /^(13[0-9]|14[01456879]|15[0-35-9]|16[2567]|17[0-8]|18[0-9]|19[0-35-9])\d{8}$/
       if (this.loginData.userPhone === '' || this.loginData.userPassword === '') {
-        warnTips('请将您的账号或密码填写完整！^_^');
+        warnTips('请将您的账号密码填写完整！^_^');
       } else {
         if (!phoneVerify.test(this.loginData.userPhone)) {
           warnTips('您的手机号码填写有误！0_0')
         } else {
-          var _this = this
-          axios.post(url + '/user/login/', this.loginData).then((res) => {
+          axios.post(process.env.ROOT_URL + '/user/login/', this.loginData).then((res) => {
             console.log(res.data)
             // 判断是否登录成功
             // 根据后端返回的自定义状态码判断
@@ -113,7 +112,6 @@ export default {
                 this.clearCookie();
               }
               successTips("欢迎用户：" + res.data.list[0].userInfoNick)
-              this.$router.push({path: '/home'});
             } else {
               // 登录失败 弹出提示信息
               failTips(res.data.msg)

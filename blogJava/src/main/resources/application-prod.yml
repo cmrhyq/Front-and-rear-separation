@@ -17,7 +17,7 @@ server:
 
 spring:
   application:
-    name: showLove
+    name: blog
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
     name: defaultDataSource

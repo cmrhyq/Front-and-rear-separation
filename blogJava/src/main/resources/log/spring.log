@@ -707,3 +707,65 @@ java.lang.NullPointerException: null
 2021-09-23 14:37:07.269  INFO - [SpringContextShutdownHook]  o.s.o.j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
 2021-09-23 14:37:07.280  INFO - [SpringContextShutdownHook]  com.zaxxer.hikari.HikariDataSource : defaultDataSource - Shutdown initiated...
 2021-09-23 14:37:07.285  INFO - [SpringContextShutdownHook]  com.zaxxer.hikari.HikariDataSource : defaultDataSource - Shutdown completed.
+2021-09-23 14:54:12.911  INFO - [restartedMain]  com.alan.blog.BlogApplication : Starting BlogApplication on LAPTOP-9RGF680E with PID 15940 (D:\GitHub\Front-and-rear-separation\blogJava\target\classes started by Alan Huang in D:\GitHub\Front-and-rear-separation\blogJava)
+2021-09-23 14:54:12.913  INFO - [restartedMain]  com.alan.blog.BlogApplication : The following profiles are active: dev
+2021-09-23 14:54:12.971  INFO - [restartedMain]  o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2021-09-23 14:54:12.972  INFO - [restartedMain]  o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2021-09-23 14:54:13.584  INFO - [restartedMain]  o.s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2021-09-23 14:54:13.610  INFO - [restartedMain]  o.s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 19ms. Found 0 JPA repository interfaces.
+2021-09-23 14:54:13.842  INFO - [restartedMain]  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.ws.config.annotation.DelegatingWsConfiguration' of type [org.springframework.ws.config.annotation.DelegatingWsConfiguration$$EnhancerBySpringCGLIB$$f2ecb713] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2021-09-23 14:54:13.887  INFO - [restartedMain]  o.s.w.s.a.s.AnnotationActionEndpointMapping : Supporting [WS-Addressing August 2004, WS-Addressing 1.0]
+2021-09-23 14:54:14.301  INFO - [restartedMain]  o.s.b.w.embedded.tomcat.TomcatWebServer : Tomcat initialized with port(s): 7778 (http)
+2021-09-23 14:54:14.313  INFO - [restartedMain]  o.apache.catalina.core.StandardService : Starting service [Tomcat]
+2021-09-23 14:54:14.313  INFO - [restartedMain]  org.apache.catalina.core.StandardEngine : Starting Servlet engine: [Apache Tomcat/9.0.41]
+2021-09-23 14:54:14.437  INFO - [restartedMain]  o.a.c.c.C.[Tomcat].[localhost].[/] : Initializing Spring embedded WebApplicationContext
+2021-09-23 14:54:14.437  INFO - [restartedMain]  o.s.b.w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1464 ms
+2021-09-23 14:54:14.632  INFO - [restartedMain]  o.hibernate.jpa.internal.util.LogHelper : HHH000204: Processing PersistenceUnitInfo [name: default]
+2021-09-23 14:54:14.681  INFO - [restartedMain]  org.hibernate.Version : HHH000412: Hibernate ORM core version 5.4.25.Final
+2021-09-23 14:54:14.820  INFO - [restartedMain]  o.hibernate.annotations.common.Version : HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2021-09-23 14:54:14.916  INFO - [restartedMain]  com.zaxxer.hikari.HikariDataSource : defaultDataSource - Starting...
+2021-09-23 14:54:15.450  INFO - [restartedMain]  com.zaxxer.hikari.HikariDataSource : defaultDataSource - Start completed.
+2021-09-23 14:54:15.464  INFO - [restartedMain]  org.hibernate.dialect.Dialect : HHH000400: Using dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+2021-09-23 14:54:15.732  INFO - [restartedMain]  o.h.e.t.j.p.i.JtaPlatformInitiator : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2021-09-23 14:54:15.742  INFO - [restartedMain]  o.s.o.j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2021-09-23 14:54:15.779  INFO - [restartedMain]  o.s.b.d.a.OptionalLiveReloadServer : LiveReload server is running on port 35729
+2021-09-23 14:54:15.962  WARN - [restartedMain]  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2021-09-23 14:54:16.063  INFO - [restartedMain]  o.s.s.concurrent.ThreadPoolTaskExecutor : Initializing ExecutorService 'applicationTaskExecutor'
+2021-09-23 14:54:16.184  WARN - [restartedMain]  o.s.b.a.t.ThymeleafAutoConfiguration$DefaultTemplateResolverConfiguration : Cannot find template location: classpath:/templates/ (please add some templates or check your Thymeleaf configuration)
+2021-09-23 14:54:16.185  WARN - [restartedMain]  org.thymeleaf.templatemode.TemplateMode : [THYMELEAF][restartedMain] Template Mode 'HTML5' is deprecated. Using Template Mode 'HTML' instead.
+2021-09-23 14:54:17.721  INFO - [restartedMain]  c.a.arthas.spring.ArthasConfiguration : Arthas agent start success.
+2021-09-23 14:54:17.929  INFO - [restartedMain]  o.s.b.w.embedded.tomcat.TomcatWebServer : Tomcat started on port(s): 7778 (http) with context path ''
+2021-09-23 14:54:17.942  INFO - [restartedMain]  com.alan.blog.BlogApplication : Started BlogApplication in 5.455 seconds (JVM running for 6.458)
+2021-09-23 14:54:40.081  INFO - [http-nio-7778-exec-1]  o.a.c.c.C.[Tomcat].[localhost].[/] : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2021-09-23 14:54:40.082  INFO - [http-nio-7778-exec-1]  o.s.web.servlet.DispatcherServlet : Initializing Servlet 'dispatcherServlet'
+2021-09-23 14:54:40.089  INFO - [http-nio-7778-exec-1]  o.s.web.servlet.DispatcherServlet : Completed initialization in 7 ms
+2021-09-23 14:55:09.426  INFO - [http-nio-7778-exec-4]  com.alan.blog.utils.TokenUtil : 认证账户:18164038469
+2021-09-23 14:55:09.426  INFO - [http-nio-7778-exec-4]  com.alan.blog.utils.TokenUtil : 认证结果:通过
+2021-09-23 14:55:09.426  INFO - [http-nio-7778-exec-4]  com.alan.blog.utils.TokenUtil : 过期时间:Thu Sep 23 15:54:40 CST 2021
+2021-09-23 14:55:09.426  INFO - [http-nio-7778-exec-4]  c.a.blog.interceptor.TokenInterceptor : 通过拦截器
+2021-09-23 14:55:09.428  INFO - [http-nio-7778-exec-4]  com.alan.blog.utils.TokenUtil : 认证账户:18164038469
+2021-09-23 14:55:09.428  INFO - [http-nio-7778-exec-4]  com.alan.blog.utils.TokenUtil : 认证结果:通过
+2021-09-23 14:55:09.428  INFO - [http-nio-7778-exec-4]  com.alan.blog.utils.TokenUtil : 过期时间:Thu Sep 23 15:54:40 CST 2021
+2021-09-23 14:55:15.038  INFO - [http-nio-7778-exec-5]  c.a.blog.interceptor.TokenInterceptor : 认证结果:认证失败，未通过拦截器
+2021-09-23 14:55:23.928  INFO - [http-nio-7778-exec-6]  com.alan.blog.utils.TokenUtil : 认证账户:18164038469
+2021-09-23 14:55:23.929  INFO - [http-nio-7778-exec-6]  com.alan.blog.utils.TokenUtil : 认证结果:通过
+2021-09-23 14:55:23.929  INFO - [http-nio-7778-exec-6]  com.alan.blog.utils.TokenUtil : 过期时间:Thu Sep 23 15:54:40 CST 2021
+2021-09-23 14:55:23.929  INFO - [http-nio-7778-exec-6]  c.a.blog.interceptor.TokenInterceptor : 通过拦截器
+2021-09-23 14:55:23.930  INFO - [http-nio-7778-exec-6]  com.alan.blog.utils.TokenUtil : 认证账户:18164038469
+2021-09-23 14:55:23.930  INFO - [http-nio-7778-exec-6]  com.alan.blog.utils.TokenUtil : 认证结果:通过
+2021-09-23 14:55:23.932  INFO - [http-nio-7778-exec-6]  com.alan.blog.utils.TokenUtil : 过期时间:Thu Sep 23 15:54:40 CST 2021
+2021-09-23 14:55:32.836  INFO - [http-nio-7778-exec-7]  c.a.blog.interceptor.TokenInterceptor : 认证结果:认证失败，未通过拦截器
+2021-09-23 14:55:38.460  INFO - [http-nio-7778-exec-8]  com.alan.blog.utils.TokenUtil : 认证账户:18164038469
+2021-09-23 14:55:38.461  INFO - [http-nio-7778-exec-8]  com.alan.blog.utils.TokenUtil : 认证结果:通过
+2021-09-23 14:55:38.461  INFO - [http-nio-7778-exec-8]  com.alan.blog.utils.TokenUtil : 过期时间:Thu Sep 23 15:54:40 CST 2021
+2021-09-23 14:55:38.461  INFO - [http-nio-7778-exec-8]  c.a.blog.interceptor.TokenInterceptor : 通过拦截器
+2021-09-23 14:55:38.461  INFO - [http-nio-7778-exec-8]  com.alan.blog.utils.TokenUtil : 认证账户:18164038469
+2021-09-23 14:55:38.462  INFO - [http-nio-7778-exec-8]  com.alan.blog.utils.TokenUtil : 认证结果:通过
+2021-09-23 14:55:38.462  INFO - [http-nio-7778-exec-8]  com.alan.blog.utils.TokenUtil : 过期时间:Thu Sep 23 15:54:40 CST 2021
+2021-09-23 14:55:44.071  INFO - [http-nio-7778-exec-10]  com.alan.blog.utils.TokenUtil : 认证账户:18164038469
+2021-09-23 14:55:44.071  INFO - [http-nio-7778-exec-10]  com.alan.blog.utils.TokenUtil : 认证结果:通过
+2021-09-23 14:55:44.071  INFO - [http-nio-7778-exec-10]  com.alan.blog.utils.TokenUtil : 过期时间:Thu Sep 23 15:54:40 CST 2021
+2021-09-23 14:55:44.071  INFO - [http-nio-7778-exec-10]  c.a.blog.interceptor.TokenInterceptor : 通过拦截器
+2021-09-23 14:55:44.072  INFO - [http-nio-7778-exec-10]  com.alan.blog.utils.TokenUtil : 认证账户:18164038469
+2021-09-23 14:55:44.072  INFO - [http-nio-7778-exec-10]  com.alan.blog.utils.TokenUtil : 认证结果:通过
+2021-09-23 14:55:44.072  INFO - [http-nio-7778-exec-10]  com.alan.blog.utils.TokenUtil : 过期时间:Thu Sep 23 15:54:40 CST 2021

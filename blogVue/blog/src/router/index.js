@@ -1,7 +1,6 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Login from "../pages/Login"
-import Home from "../pages/home/Home"
 
 Vue.use(VueRouter)
 const originalPush = VueRouter.prototype.push
@@ -20,11 +19,6 @@ export default new VueRouter({
       name: 'Login',
       component: Login
     },
-    {
-      path: '/home',
-      name: 'Home',
-      component: Home
-    }
   ],
   mode: 'history',
 })

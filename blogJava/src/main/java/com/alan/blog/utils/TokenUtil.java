@@ -34,19 +34,19 @@ public class TokenUtil {
     /**
      * 签名生成
      *
-     * @param userPhone
-     * @return
+     * @param userPhone 手机号
+     * @return String - token
      */
     public static String sing(String userPhone) {
         String token = "";
         try {
-            Date expiresAt = new Date(System.currentTimeMillis()+EXPIRE_TIME);
+            Date expiresAt = new Date(System.currentTimeMillis() + EXPIRE_TIME);
             token = JWT.create()
                     .withIssuer("auto0")
                     .withClaim("userPhone", userPhone)
                     .withExpiresAt(expiresAt)
                     .sign(Algorithm.HMAC256(TOKEN_SECRET));
-        } catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
         return token;
@@ -54,16 +54,17 @@ public class TokenUtil {
 
     /**
      * 签名验证
-     * @param token
-     * @return
+     *
+     * @param token token
+     * @return boolean - true or false
      */
-    public static boolean verify(String token){
+    public static boolean verify(String token) {
         try {
             JWTVerifier verifier = JWT.require(Algorithm.HMAC256(TOKEN_SECRET)).withIssuer("auto0").build();
             DecodedJWT jwt = verifier.verify(token);
-            log.info("认证账户:"+jwt.getClaim("userPhone").asString());
+            log.info("认证账户:" + jwt.getClaim("userPhone").asString());
             log.info("认证结果:通过");
-            log.info("过期时间:"+jwt.getExpiresAt());
+            log.info("过期时间:" + jwt.getExpiresAt());
             return true;
         } catch (Exception e) {
             return false;
