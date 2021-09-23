@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.alan.blog.mapper.UserMapper">
+
+    <select id="login" resultType="UserLogin">
+        SELECT user_login.user_id            as userId,
+               user_login.user_phone         as userPhone,
+               user_login.user_password      as userPassword,
+               user_login.user_reg_time      as userRegTime,
+               user_login.user_last_time     as userLastTime,
+               user_login.user_status        as userStatus,
+               user_login.user_session_id    as userSession,
+               user_login.user_last_login_ip as userLastLoginIp
+        FROM user_login
+        WHERE user_login.user_phone = #{userPhone}
+    </select>
+
+    <update id="updateUserInfo" parameterType="hashmap">
+        update user_login
+        <trim prefix="set" suffixOverrides=",">
+            <if test="userPhone != null">user_phone = #{userPhone},</if>
+            <if test="userPassword != null">user_password = #{userPassword},</if>
+            <if test="userLastTime != null">user_last_time = #{userLastTime},</if>
+            <if test="userStatus != null">user_status = #{userStatus},</if>
+            <if test="userSessionId != null">user_session_id = #{userSessionId},</if>
+            <if test="userLastLoginIp != null">user_last_login_ip = #{userLastLoginIp}</if>
+        </trim>
+        where user_id = #{userId}
+    </update>
+
+    <select id="queryUserInfo" resultType="UserInfo">
+        SELECT user_info.user_info_id        as userInfoId,
+               user_info.user_info_sex       as userInfoSex,
+               user_info.user_info_nick      as userInfoNick,
+               user_info.user_info_name      as userInfoName,
+               user_info.user_info_id_number as userInfoIdNumber,
+               user_info.user_info_id_type   as userInfoIdType,
+               user_info.user_info_province  as userInfoProvince,
+               user_info.user_info_address   as userInfoAddress,
+               user_info.user_login_id       as userinfoLoginId
+        FROM user_info
+        WHERE user_info.user_login_id = #{userLoginId}
+    </select>
+</mapper>
