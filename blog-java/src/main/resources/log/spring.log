@@ -1,61 +1,32 @@
-2021-09-26 00:53:31.413  INFO - [restartedMain]  com.alan.blog.BlogApplication : Starting BlogApplication on LAPTOP-9RGF680E with PID 8028 (D:\GitHub\Front-and-rear-separation\blog-java\target\classes started by Alan Huang in D:\GitHub\Front-and-rear-separation\blog-java)
-2021-09-26 00:53:31.423  INFO - [restartedMain]  com.alan.blog.BlogApplication : The following profiles are active: dev
-2021-09-26 00:53:31.482  INFO - [restartedMain]  o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
-2021-09-26 00:53:31.483  INFO - [restartedMain]  o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
-2021-09-26 00:53:32.376  INFO - [restartedMain]  o.s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2021-09-26 00:53:32.412  INFO - [restartedMain]  o.s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 25ms. Found 0 JPA repository interfaces.
-2021-09-26 00:53:32.717  INFO - [restartedMain]  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.ws.config.annotation.DelegatingWsConfiguration' of type [org.springframework.ws.config.annotation.DelegatingWsConfiguration$$EnhancerBySpringCGLIB$$aab552e2] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
-2021-09-26 00:53:32.788  INFO - [restartedMain]  o.s.w.s.a.s.AnnotationActionEndpointMapping : Supporting [WS-Addressing August 2004, WS-Addressing 1.0]
-2021-09-26 00:53:33.241  INFO - [restartedMain]  o.s.b.w.embedded.tomcat.TomcatWebServer : Tomcat initialized with port(s): 7778 (http)
-2021-09-26 00:53:33.252  INFO - [restartedMain]  o.apache.catalina.core.StandardService : Starting service [Tomcat]
-2021-09-26 00:53:33.252  INFO - [restartedMain]  org.apache.catalina.core.StandardEngine : Starting Servlet engine: [Apache Tomcat/9.0.41]
-2021-09-26 00:53:33.415  INFO - [restartedMain]  o.a.c.c.C.[Tomcat].[localhost].[/] : Initializing Spring embedded WebApplicationContext
-2021-09-26 00:53:33.415  INFO - [restartedMain]  o.s.b.w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1932 ms
-2021-09-26 00:53:33.648  INFO - [restartedMain]  o.hibernate.jpa.internal.util.LogHelper : HHH000204: Processing PersistenceUnitInfo [name: default]
-2021-09-26 00:53:33.716  INFO - [restartedMain]  org.hibernate.Version : HHH000412: Hibernate ORM core version 5.4.25.Final
-2021-09-26 00:53:33.872  INFO - [restartedMain]  o.hibernate.annotations.common.Version : HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
-2021-09-26 00:53:33.997  INFO - [restartedMain]  com.zaxxer.hikari.HikariDataSource : defaultDataSource - Starting...
-2021-09-26 00:53:34.926  INFO - [restartedMain]  com.zaxxer.hikari.HikariDataSource : defaultDataSource - Start completed.
-2021-09-26 00:53:34.939  INFO - [restartedMain]  org.hibernate.dialect.Dialect : HHH000400: Using dialect: org.hibernate.dialect.MySQL5InnoDBDialect
-2021-09-26 00:53:35.222  INFO - [restartedMain]  o.h.e.t.j.p.i.JtaPlatformInitiator : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
-2021-09-26 00:53:35.229  INFO - [restartedMain]  o.s.o.j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
-2021-09-26 00:53:35.265  INFO - [restartedMain]  o.s.b.d.a.OptionalLiveReloadServer : LiveReload server is running on port 35729
-2021-09-26 00:53:35.474  WARN - [restartedMain]  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2021-09-26 00:53:35.582  INFO - [restartedMain]  o.s.s.concurrent.ThreadPoolTaskExecutor : Initializing ExecutorService 'applicationTaskExecutor'
-2021-09-26 00:53:35.724  WARN - [restartedMain]  o.s.b.a.t.ThymeleafAutoConfiguration$DefaultTemplateResolverConfiguration : Cannot find template location: classpath:/templates/ (please add some templates or check your Thymeleaf configuration)
-2021-09-26 00:53:35.725  WARN - [restartedMain]  org.thymeleaf.templatemode.TemplateMode : [THYMELEAF][restartedMain] Template Mode 'HTML5' is deprecated. Using Template Mode 'HTML' instead.
-2021-09-26 00:53:40.924  INFO - [restartedMain]  c.a.arthas.spring.ArthasConfiguration : Arthas agent start success.
-2021-09-26 00:53:41.093  INFO - [restartedMain]  o.s.b.w.embedded.tomcat.TomcatWebServer : Tomcat started on port(s): 7778 (http) with context path ''
-2021-09-26 00:53:41.104  INFO - [restartedMain]  com.alan.blog.BlogApplication : Started BlogApplication in 10.279 seconds (JVM running for 11.838)
-2021-09-26 00:54:06.147  INFO - [http-nio-7778-exec-1]  o.a.c.c.C.[Tomcat].[localhost].[/] : Initializing Spring DispatcherServlet 'dispatcherServlet'
-2021-09-26 00:54:06.147  INFO - [http-nio-7778-exec-1]  o.s.web.servlet.DispatcherServlet : Initializing Servlet 'dispatcherServlet'
-2021-09-26 00:54:06.159  INFO - [http-nio-7778-exec-1]  o.s.web.servlet.DispatcherServlet : Completed initialization in 12 ms
-2021-09-26 09:02:12.099  INFO - [restartedMain]  com.alan.blog.BlogApplication : Starting BlogApplication on LAPTOP-9RGF680E with PID 4904 (D:\GitHub\Front-and-rear-separation\blog-java\target\classes started by Alan Huang in D:\GitHub\Front-and-rear-separation\blog-java)
-2021-09-26 09:02:12.102  INFO - [restartedMain]  com.alan.blog.BlogApplication : The following profiles are active: dev
-2021-09-26 09:02:12.165  INFO - [restartedMain]  o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
-2021-09-26 09:02:12.166  INFO - [restartedMain]  o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
-2021-09-26 09:02:12.855  INFO - [restartedMain]  o.s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2021-09-26 09:02:12.891  INFO - [restartedMain]  o.s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 26ms. Found 0 JPA repository interfaces.
-2021-09-26 09:02:13.155  INFO - [restartedMain]  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.ws.config.annotation.DelegatingWsConfiguration' of type [org.springframework.ws.config.annotation.DelegatingWsConfiguration$$EnhancerBySpringCGLIB$$fc353352] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
-2021-09-26 09:02:13.208  INFO - [restartedMain]  o.s.w.s.a.s.AnnotationActionEndpointMapping : Supporting [WS-Addressing August 2004, WS-Addressing 1.0]
-2021-09-26 09:02:13.628  INFO - [restartedMain]  o.s.b.w.embedded.tomcat.TomcatWebServer : Tomcat initialized with port(s): 7778 (http)
-2021-09-26 09:02:13.637  INFO - [restartedMain]  o.apache.catalina.core.StandardService : Starting service [Tomcat]
-2021-09-26 09:02:13.637  INFO - [restartedMain]  org.apache.catalina.core.StandardEngine : Starting Servlet engine: [Apache Tomcat/9.0.41]
-2021-09-26 09:02:13.789  INFO - [restartedMain]  o.a.c.c.C.[Tomcat].[localhost].[/] : Initializing Spring embedded WebApplicationContext
-2021-09-26 09:02:13.790  INFO - [restartedMain]  o.s.b.w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1624 ms
-2021-09-26 09:02:14.057  INFO - [restartedMain]  o.hibernate.jpa.internal.util.LogHelper : HHH000204: Processing PersistenceUnitInfo [name: default]
-2021-09-26 09:02:14.114  INFO - [restartedMain]  org.hibernate.Version : HHH000412: Hibernate ORM core version 5.4.25.Final
-2021-09-26 09:02:14.226  INFO - [restartedMain]  o.hibernate.annotations.common.Version : HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
-2021-09-26 09:02:14.323  INFO - [restartedMain]  com.zaxxer.hikari.HikariDataSource : defaultDataSource - Starting...
-2021-09-26 09:02:15.007  INFO - [restartedMain]  com.zaxxer.hikari.HikariDataSource : defaultDataSource - Start completed.
-2021-09-26 09:02:15.018  INFO - [restartedMain]  org.hibernate.dialect.Dialect : HHH000400: Using dialect: org.hibernate.dialect.MySQL5InnoDBDialect
-2021-09-26 09:02:15.291  INFO - [restartedMain]  o.h.e.t.j.p.i.JtaPlatformInitiator : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
-2021-09-26 09:02:15.300  INFO - [restartedMain]  o.s.o.j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
-2021-09-26 09:02:15.341  INFO - [restartedMain]  o.s.b.d.a.OptionalLiveReloadServer : LiveReload server is running on port 35729
-2021-09-26 09:02:15.559  WARN - [restartedMain]  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2021-09-26 09:02:15.682  INFO - [restartedMain]  o.s.s.concurrent.ThreadPoolTaskExecutor : Initializing ExecutorService 'applicationTaskExecutor'
-2021-09-26 09:02:15.828  WARN - [restartedMain]  o.s.b.a.t.ThymeleafAutoConfiguration$DefaultTemplateResolverConfiguration : Cannot find template location: classpath:/templates/ (please add some templates or check your Thymeleaf configuration)
-2021-09-26 09:02:15.829  WARN - [restartedMain]  org.thymeleaf.templatemode.TemplateMode : [THYMELEAF][restartedMain] Template Mode 'HTML5' is deprecated. Using Template Mode 'HTML' instead.
-2021-09-26 09:02:17.624  INFO - [restartedMain]  c.a.arthas.spring.ArthasConfiguration : Arthas agent start success.
-2021-09-26 09:02:17.897  INFO - [restartedMain]  o.s.b.w.embedded.tomcat.TomcatWebServer : Tomcat started on port(s): 7778 (http) with context path ''
-2021-09-26 09:02:17.914  INFO - [restartedMain]  com.alan.blog.BlogApplication : Started BlogApplication in 6.262 seconds (JVM running for 7.476)
+2021-09-27 08:54:43.671  INFO - [restartedMain]  com.alan.blog.BlogApplication : Starting BlogApplication on LAPTOP-9RGF680E with PID 2452 (D:\GitHub\Front-and-rear-separation\blog-java\target\classes started by Alan Huang in D:\GitHub\Front-and-rear-separation\blog-java)
+2021-09-27 08:54:43.678  INFO - [restartedMain]  com.alan.blog.BlogApplication : The following profiles are active: dev
+2021-09-27 08:54:43.746  INFO - [restartedMain]  o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2021-09-27 08:54:43.746  INFO - [restartedMain]  o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2021-09-27 08:54:44.384  INFO - [restartedMain]  o.s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2021-09-27 08:54:44.403  INFO - [restartedMain]  o.s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 12ms. Found 0 JPA repository interfaces.
+2021-09-27 08:54:44.701  INFO - [restartedMain]  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.ws.config.annotation.DelegatingWsConfiguration' of type [org.springframework.ws.config.annotation.DelegatingWsConfiguration$$EnhancerBySpringCGLIB$$6e36909d] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2021-09-27 08:54:44.745  INFO - [restartedMain]  o.s.w.s.a.s.AnnotationActionEndpointMapping : Supporting [WS-Addressing August 2004, WS-Addressing 1.0]
+2021-09-27 08:54:45.092  INFO - [restartedMain]  o.s.b.w.embedded.tomcat.TomcatWebServer : Tomcat initialized with port(s): 7778 (http)
+2021-09-27 08:54:45.100  INFO - [restartedMain]  o.apache.catalina.core.StandardService : Starting service [Tomcat]
+2021-09-27 08:54:45.100  INFO - [restartedMain]  org.apache.catalina.core.StandardEngine : Starting Servlet engine: [Apache Tomcat/9.0.41]
+2021-09-27 08:54:45.198  INFO - [restartedMain]  o.a.c.c.C.[Tomcat].[localhost].[/] : Initializing Spring embedded WebApplicationContext
+2021-09-27 08:54:45.199  INFO - [restartedMain]  o.s.b.w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1453 ms
+2021-09-27 08:54:45.409  INFO - [restartedMain]  o.hibernate.jpa.internal.util.LogHelper : HHH000204: Processing PersistenceUnitInfo [name: default]
+2021-09-27 08:54:45.446  INFO - [restartedMain]  org.hibernate.Version : HHH000412: Hibernate ORM core version 5.4.25.Final
+2021-09-27 08:54:45.554  INFO - [restartedMain]  o.hibernate.annotations.common.Version : HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2021-09-27 08:54:45.640  INFO - [restartedMain]  com.zaxxer.hikari.HikariDataSource : defaultDataSource - Starting...
+2021-09-27 08:54:46.401  INFO - [restartedMain]  com.zaxxer.hikari.HikariDataSource : defaultDataSource - Start completed.
+2021-09-27 08:54:46.412  INFO - [restartedMain]  org.hibernate.dialect.Dialect : HHH000400: Using dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+2021-09-27 08:54:46.638  INFO - [restartedMain]  o.h.e.t.j.p.i.JtaPlatformInitiator : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2021-09-27 08:54:46.645  INFO - [restartedMain]  o.s.o.j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2021-09-27 08:54:46.673  INFO - [restartedMain]  o.s.b.d.a.OptionalLiveReloadServer : LiveReload server is running on port 35729
+2021-09-27 08:54:46.885  WARN - [restartedMain]  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2021-09-27 08:54:46.991  INFO - [restartedMain]  o.s.s.concurrent.ThreadPoolTaskExecutor : Initializing ExecutorService 'applicationTaskExecutor'
+2021-09-27 08:54:47.129  WARN - [restartedMain]  o.s.b.a.t.ThymeleafAutoConfiguration$DefaultTemplateResolverConfiguration : Cannot find template location: classpath:/templates/ (please add some templates or check your Thymeleaf configuration)
+2021-09-27 08:54:47.130  WARN - [restartedMain]  org.thymeleaf.templatemode.TemplateMode : [THYMELEAF][restartedMain] Template Mode 'HTML5' is deprecated. Using Template Mode 'HTML' instead.
+2021-09-27 08:54:48.651  INFO - [restartedMain]  c.a.arthas.spring.ArthasConfiguration : Arthas agent start success.
+2021-09-27 08:54:48.795  INFO - [restartedMain]  o.s.b.w.embedded.tomcat.TomcatWebServer : Tomcat started on port(s): 7778 (http) with context path ''
+2021-09-27 08:54:48.805  INFO - [restartedMain]  com.alan.blog.BlogApplication : Started BlogApplication in 5.544 seconds (JVM running for 6.573)
+2021-09-27 08:55:16.933  INFO - [http-nio-7778-exec-1]  o.a.c.c.C.[Tomcat].[localhost].[/] : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2021-09-27 08:55:16.933  INFO - [http-nio-7778-exec-1]  o.s.web.servlet.DispatcherServlet : Initializing Servlet 'dispatcherServlet'
+2021-09-27 08:55:16.941  INFO - [http-nio-7778-exec-1]  o.s.web.servlet.DispatcherServlet : Completed initialization in 7 ms

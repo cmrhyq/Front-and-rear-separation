@@ -26,7 +26,7 @@
         </el-input>
       </el-form-item>
       <el-form-item>
-        <el-checkbox v-model="checked" class="remeberPwd">记住密码</el-checkbox>
+        <el-checkbox v-model="checked">记住密码</el-checkbox>
       </el-form-item>
       <el-form-item>
         <el-button type="primary" @click="doLogin()">登录</el-button>
@@ -34,6 +34,7 @@
       </el-form-item>
     </el-form>
   </el-card>
+
 
 </template>
 
@@ -94,7 +95,6 @@ export default {
         } else {
           var _this = this
           axios.post(url + '/user/login/', this.loginData).then((res) => {
-            console.log(res.data)
             // 判断是否登录成功
             // 根据后端返回的自定义状态码判断
             // 登录成功
@@ -113,7 +113,16 @@ export default {
                 this.clearCookie();
               }
               successTips("欢迎用户：" + res.data.list[0].userInfoNick)
-              this.$router.replace({path: '/index'});
+              this.$router.push({
+                path: '/index',
+                query: {
+                  userName: res.data.list[0].userInfoName,
+                  userNick: res.data.list[0].userInfoNick,
+                  userSex: res.data.list[0].userInfoSex,
+                  userPhone: res.data.list[0].userInfoPhone,
+                  userIp: res.data.list[0].userInfoIp
+                }
+              });
             } else {
               // 登录失败 弹出提示信息
               failTips(res.data.msg)
@@ -151,27 +160,35 @@ export default {
     clearCookie() {
       this.setCookie('', '', -1)
     }
+  },
+  beforeCreate() {
+    document.querySelector("body").setAttribute("style", "background-color: #96B7C4;")
+  },
+  beforeDestroy() {
+    document.querySelector("body").removeAttribute("style")
   }
 }
 </script>
 
 <style>
-html, body {
-  width: 100%;
-  height: 100%;
+* {
+  outline: none;
+  text-decoration: none;
+}
+
+body {
   margin: 0;
   padding: 0;
 }
 
-body {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-image: linear-gradient(-25deg, #616161 0%, #96B7C4 100%);
-}
-
 .box-card {
   width: 480px;
+  margin: 0 auto;
+  position: relative;
+  top: 200px;
+  left: 0;
+  right: 0;
+  bottom: 0;
   box-shadow: 0 2px 12px 0 rgb(241 235 235 / 80%);
 }
 </style>

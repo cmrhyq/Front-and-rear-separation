@@ -1,27 +1,77 @@
+// import Vue from 'vue'
+// import Router from 'vue-router'
+// import Login from '@/components/login'
+// import Index from '@/components/index'
+// import ControlUser from '@/components/controlUser'
+// import EditUserInfo from '@/components/editUserInfo'
+//
+// Vue.use(Router)
+//
+// export default new Router({
+//   routes: [
+//     {
+//       path: '/',
+//       name: 'Login',
+//       component: Login
+//     },
+//     {
+//       path: '/login',
+//       name: 'Login',
+//       component: Login
+//     },
+//     {
+//       path: '/index',
+//       name: 'Index',
+//       component: Index
+//     },
+//     {
+//       path: '/controlUser',
+//       name: 'ControlUser',
+//       component: ControlUser
+//     },
+//     {
+//       path: '/editUserInfo',
+//       name: 'EditUserInfo',
+//       component: EditUserInfo
+//     }
+//   ]
+// })
+
 import Vue from 'vue'
 import Router from 'vue-router'
-import Login from '@/components/login'
-import Index from '@/components/index'
-import EditUserInfo from '@/components/editUserInfo'
 
 Vue.use(Router)
 
-export default new Router({
-  routes: [
-    {
-      path: '/',
-      name: 'Login',
-      component: Login
-    },
-    {
-      path: '/index',
-      name: 'Index',
-      component: Index
-    },
-    {
+const login = r => require.ensure([], () => r(require('@/components/login')), 'login');
+const index = r => require.ensure([], () => r(require('@/components/index')), 'index');
+const controlUser = r => require.ensure([], () => r(require('@/components/controlUser')), 'controlUser');
+const editUserInfo = r => require.ensure([], () => r(require('@/components/editUserInfo')), 'index');
+const welcome = r => require.ensure([], () => r(require('@/components/welcome')), 'welcome');
+
+const routes = [
+  {
+    path: '/',
+    component: login
+  }, {
+    path: '/index',
+    component: index,
+    name: '',
+    children: [{
+      path: '',
+      component: welcome,
+      meta: [],
+    }, {
+      path: '/controlUser',
+      component: controlUser,
+      meta: ['用户控制']
+    }, {
       path: '/editUserInfo',
-      name: 'EditUserInfo',
-      component: EditUserInfo
-    }
-  ]
+      component: editUserInfo,
+      meta: ['编辑资料']
+    }]
+  }
+]
+
+export default new Router({
+  routes,
 })
