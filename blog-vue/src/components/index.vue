@@ -11,6 +11,12 @@
           background-color="#545c64"
           text-color="#fff"
           active-text-color="#ffd04b">
+<!--          <el- class="logo-item" style="display:inline-block;">-->
+<!--            <h3>Logo</h3>-->
+<!--          </el->-->
+          <el-menu-item class="logo-item">
+            logo
+          </el-menu-item>
           <el-submenu index="1" style="float: right">
             <template slot="title">
               <i class="el-icon-user"></i>
@@ -20,12 +26,14 @@
               <el-menu-item index="editUserInfo">编辑资料</el-menu-item>
             </router-link>
             <el-menu-item index="modifyPwd">修改密码</el-menu-item>
-            <el-menu-item index="logout">退出系统</el-menu-item>
+            <router-link to="/">
+              <el-menu-item index="logout">退出系统</el-menu-item>
+            </router-link>
           </el-submenu>
         </el-menu>
       </el-col>
       <!--    侧栏-->
-      <el-col :span="12" style="width: 200px;float: left">
+      <el-col :span="12" style="width: 230px;float: left">
         <el-menu
           default-active="2"
           class="el-menu-vertical-demo"
@@ -34,10 +42,8 @@
           background-color="#545c64"
           text-color="#fff"
           active-text-color="#ffd04b"
-          style="height: 900px;overflow:auto;">
-          <div class="logo-item">
-            <h1 style="text-align: center">Logo</h1>
-          </div>
+          :collapse="isCollapse"
+          style="height: 880px;overflow:auto;">
           <el-submenu index="1">
             <template slot="title">
               <i class="el-icon-location"></i>
@@ -113,6 +119,7 @@ export default {
   name: "Index",
   data() {
     return {
+      isCollapse: false,
       userNick: '',
       activeIndex: '1'
     }
@@ -172,5 +179,10 @@ body {
 
 .logo-item {
   color: #ffffff;
+  margin-left: 100px;
+  font-family: "Sitka Display",serif;
+  font-style: italic;
+  font-size: 30px;
+  text-align: center
 }
 </style>

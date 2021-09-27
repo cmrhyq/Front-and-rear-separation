@@ -34,8 +34,6 @@
       </el-form-item>
     </el-form>
   </el-card>
-
-
 </template>
 
 <script>
@@ -53,7 +51,8 @@ export default {
       logining: false,
       loginData: {
         userPhone: '',
-        userPassword: ''
+        userPassword: '',
+        verifyCode: ''
       },
       userPhone: [
         {
@@ -113,6 +112,7 @@ export default {
                 this.clearCookie();
               }
               successTips("欢迎用户：" + res.data.list[0].userInfoNick)
+              // 向主页传值
               this.$router.push({
                 path: '/index',
                 query: {

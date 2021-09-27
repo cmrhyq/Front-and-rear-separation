@@ -1,16 +1,16 @@
 <template>
-<div class="main-box">
-  <div class="nav-box">
-    <el-breadcrumb separator-class="el-icon-arrow-right">
-      <el-breadcrumb-item :to="{ path: '/index' }">首页</el-breadcrumb-item>
-    </el-breadcrumb>
+  <div class="main-box">
+    首页
   </div>
-</div>
 </template>
 
 <script>
 export default {
-  name: "welcome"
+  name: "welcome",
+  data() {
+    return {}
+  },
+  methods: {}
 }
 </script>
 
@@ -28,10 +28,5 @@ body {
 .main-box {
   width: 100%;
   height: 100%;
-}
-
-.nav-box {
-  overflow: hidden;
-  padding: 50px;
 }
 </style>
