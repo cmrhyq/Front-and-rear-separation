@@ -16,8 +16,6 @@ export default {
 </script>
 
 <style scoped>
-.nav-box{
-  overflow: hidden;
-  padding: 50px;
-}
+@import "../assets/css/public.css";
+
 </style>

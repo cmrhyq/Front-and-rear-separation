@@ -38,37 +38,21 @@
 
 <script>
 import message from '../assets/js/message'
-import {successTips, failTips, infoTips, warnTips, saveSuccess} from "../assets/js/tipsInfo";
+import {successTips, failTips, infoTips, warnTips, saveSuccess, outputTips} from "../assets/js/tipsInfo";
 import axios from 'axios'
 import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
+import {mapMutations} from "vuex";
 
 export default {
   name: "Login",
   data() {
     return {
-      timeInterval: null,
-      logining: false,
       loginData: {
         userPhone: '',
-        userPassword: '',
-        verifyCode: ''
+        userPassword: ''
       },
-      userPhone: [
-        {
-          required: true,
-          message: '请输入手机号',
-          trigger: 'blur'
-        }
-      ],
-      userPassword: [
-        {
-          required: true,
-          message: '请输入密码',
-          trigger: 'blur'
-        }
-      ],
-      checked: false
+      checked: true
     };
   },
   /**
@@ -79,20 +63,22 @@ export default {
     this.account();
   },
   methods: {
+    ...mapMutations(['changeLogin']),
     /**
      * 登录
      */
     doLogin() {
       var url = 'http://localhost:7778'
       // 通过正则验证手机号正确性
+      var userPhone = this.loginData.userPhone;
+      var userPassword = this.loginData.userPassword;
       var phoneVerify = /^(13[0-9]|14[01456879]|15[0-35-9]|16[2567]|17[0-8]|18[0-9]|19[0-35-9])\d{8}$/
-      if (this.loginData.userPhone === '' || this.loginData.userPassword === '') {
+      if (userPhone === undefined || userPhone === '' || userPassword === undefined || userPassword === '') {
         warnTips('请将您的账号或密码填写完整！^_^');
       } else {
         if (!phoneVerify.test(this.loginData.userPhone)) {
           warnTips('您的手机号码填写有误！0_0')
         } else {
-          var _this = this
           axios.post(url + '/user/login/', this.loginData).then((res) => {
             // 判断是否登录成功
             // 根据后端返回的自定义状态码判断
@@ -111,7 +97,10 @@ export default {
                 // 登录失败 清除信息
                 this.clearCookie();
               }
-              successTips("欢迎用户：" + res.data.list[0].userInfoNick)
+              // successTips("欢迎用户：" + res.data.list[0].userInfoNick)
+              //将用户token 存入vuex
+              this.userToken = res.data.token
+              this.changeLogin({token: this.userToken})
               // 向主页传值
               this.$router.push({
                 path: '/index',
@@ -125,9 +114,10 @@ export default {
               });
             } else {
               // 登录失败 弹出提示信息
-              failTips(res.data.msg)
+              // failTips(res.data.msg)
               this.clearCookie();
             }
+            outputTips(res.data)
           }).catch(function (error) {
             console.log(error)
           })

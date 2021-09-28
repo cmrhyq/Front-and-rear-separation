@@ -48,30 +48,77 @@ const controlUser = r => require.ensure([], () => r(require('@/components/contro
 const editUserInfo = r => require.ensure([], () => r(require('@/components/editUserInfo')), 'index');
 const welcome = r => require.ensure([], () => r(require('@/components/welcome')), 'welcome');
 
-const routes = [
-  {
-    path: '/',
-    component: login
-  }, {
-    path: '/index',
-    component: index,
-    name: '',
-    children: [{
-      path: '',
-      component: welcome,
-      meta: [],
-    }, {
-      path: '/controlUser',
-      component: controlUser,
-      meta: ['用户控制']
-    }, {
-      path: '/editUserInfo',
-      component: editUserInfo,
-      meta: ['编辑资料']
-    }]
-  }
-]
+// const routes = [
+//   {
+//     path: '/',
+//     component: login
+//   }, {
+//     path: '/index',
+//     component: index,
+//     name: '',
+//     children: [{
+//       path: '',
+//       component: welcome,
+//       meta: [],
+//     }, {
+//       path: '/controlUser',
+//       component: controlUser,
+//       meta: ['用户控制']
+//     }, {
+//       path: '/editUserInfo',
+//       component: editUserInfo,
+//       meta: ['编辑资料']
+//     }
+//     ]
+//   }
+// ]
 
-export default new Router({
-  routes,
+const router = new Router({
+  routes: [
+    {
+      path: '/',
+      component: login
+    }, {
+      path: '/index',
+      component: index,
+      name: '',
+      children: [{
+        path: '',
+        component: welcome,
+        meta: [],
+      }, {
+        path: '/controlUser',
+        component: controlUser,
+        meta: ['用户控制']
+      }, {
+        path: '/editUserInfo',
+        component: editUserInfo,
+        meta: ['编辑资料']
+      }
+      ]
+    }
+  ]
 })
+
+/**
+ * 导航守卫
+ * 使用router。beforeEach注册一个全局前置首位，判断用户是否登录
+ */
+router.beforeEach((to, from, next) => {
+  if (to.path === '/') {
+    next();
+  } else {
+    let token = localStorage.getItem('token');
+    if (token === 'null' || token === '' || token === undefined) {
+      next('/');
+    } else {
+      next();
+    }
+  }
+})
+
+export default router
+
+// export default new Router({
+//   routes,
+// })

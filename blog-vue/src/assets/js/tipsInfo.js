@@ -11,6 +11,18 @@
  */
 
 /**
+ * 显示提示信息
+ * @param data
+ */
+function outputTips(data) {
+  if (data.status === 201){
+    successTips(data.msg)
+  } else {
+    failTips(data.msg)
+  }
+}
+
+/**
  * 成功提示
  * @param msg 提示信息
  */
@@ -73,4 +85,4 @@ function saveSuccess(msg) {
   });
 }
 
-export {successTips, saveSuccess, infoTips, warnTips, failTips}
+export {outputTips, successTips, saveSuccess, infoTips, warnTips, failTips}

@@ -23,5 +23,4 @@ public class Result {
     private List<?> list;
     private String token;
     private Object obj;
-
 }

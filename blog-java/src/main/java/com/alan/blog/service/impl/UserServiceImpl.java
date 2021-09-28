@@ -7,11 +7,8 @@ import com.alan.blog.service.UserService;
 import com.alan.blog.utils.*;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Service;
 
-import javax.servlet.http.HttpServletRequest;
-import java.sql.Time;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -55,7 +52,6 @@ public class UserServiceImpl implements UserService {
         Timestamp userLastTime = new Timestamp(System.currentTimeMillis());
         // 根据手机号查询数据
         UserLogin queryLoginInfo = userMapper.login(userPhone);
-        UserInfo queryUserInfo = userMapper.queryUserInfo(queryLoginInfo.getUserId());
         if (queryLoginInfo == null) {
             // 账号未注册
             returnResult.setCode(EnumErrorCode.ACC_NO_REG.getCode());
@@ -75,11 +71,14 @@ public class UserServiceImpl implements UserService {
                 returnResult.setStatus(EnumErrorCode.ACC_FREEZE.getStatus());
             } else {
                 // 密码错误
-                if (!queryLoginInfo.getUserPassword().equals(userPassword)) {
+                String databasePwd = queryLoginInfo.getUserPassword();
+                log.info(Encrypt.convertMD5(databasePwd));
+                if (!Encrypt.convertMD5(databasePwd).equals(userPassword)) {
                     returnResult.setCode(EnumErrorCode.ACC_PWD_ERR.getCode());
                     returnResult.setMsg(EnumErrorCode.ACC_PWD_ERR.getMessage());
                     returnResult.setStatus(EnumErrorCode.ACC_PWD_ERR.getStatus());
                 } else {
+                    UserInfo queryUserInfo = userMapper.queryUserInfo(queryLoginInfo.getUserId());
                     // 最后登录时间和最后登录ip存入数据库
                     updateUserResult.setUserLastTime(userLastTime);
                     updateUserResult.setUserLastLoginIp(IPUtil.getIP(HttpContextUtil.getHttpServletRequest()));

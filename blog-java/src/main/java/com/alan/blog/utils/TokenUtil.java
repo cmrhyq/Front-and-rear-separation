@@ -5,6 +5,7 @@ import com.auth0.jwt.JWTVerifier;
 import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.interfaces.DecodedJWT;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Value;
 
 import java.util.Date;
 
@@ -29,7 +30,7 @@ public class TokenUtil {
     /**
      * 密钥
      */
-    private static final String TOKEN_SECRET = "cqyh";
+    private static final String TOKEN_SECRET = "AlanHuangIsHYQ";
 
     /**
      * 签名生成

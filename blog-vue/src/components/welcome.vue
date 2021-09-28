@@ -1,32 +1,39 @@
 <template>
   <div class="main-box">
     首页
+    <el-button type="primary" round @click="tokenCheck">
+      token校验
+    </el-button>
   </div>
 </template>
 
 <script>
+import axios from "_axios@0.21.4@axios";
+import {failTips, successTips, warnTips, outputTips} from "../assets/js/tipsInfo";
+
 export default {
   name: "welcome",
   data() {
     return {}
   },
-  methods: {}
+  methods: {
+    /**
+     * token验证的请求
+     */
+    tokenCheck() {
+      var url = 'http://localhost:7778'
+      axios.post(url + '/user/test/').then((res) => {
+        console.log(res.data)
+        outputTips(res.data)
+      }).catch(function (error) {
+        console.log(error)
+      })
+    }
+  }
 }
 </script>
 
 <style scoped>
-* {
-  outline: none;
-  text-decoration: none;
-}
+@import "../assets/css/public.css";
 
-body {
-  margin: 0;
-  padding: 0;
-}
-
-.main-box {
-  width: 100%;
-  height: 100%;
-}
 </style>

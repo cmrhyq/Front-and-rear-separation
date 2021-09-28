@@ -2,6 +2,7 @@ package com.alan.blog.controller;
 
 import com.alan.blog.entity.UserLogin;
 import com.alan.blog.service.UserService;
+import com.alan.blog.utils.EnumErrorCode;
 import com.alan.blog.utils.Result;
 import com.alan.blog.utils.TokenUtil;
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -58,9 +59,14 @@ public class UserController {
      */
     @ResponseBody
     @PostMapping("/test")
-    public String test(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    public Result test(HttpServletRequest request, HttpServletResponse response) throws IOException {
         response.setCharacterEncoding("utf-8");
         String token = request.getHeader("token");
-        return "校验结果为：" + TokenUtil.verify(token);
+        // 返回的结果
+        Result returnResult = new Result();
+        returnResult.setCode(EnumErrorCode.LOGIN_SUCCESS.getCode());
+        returnResult.setMsg("校验结果为：" + TokenUtil.verify(token));
+        returnResult.setStatus(EnumErrorCode.LOGIN_SUCCESS.getStatus());
+        return returnResult;
     }
 }

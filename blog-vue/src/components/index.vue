@@ -11,11 +11,13 @@
           background-color="#545c64"
           text-color="#fff"
           active-text-color="#ffd04b">
-<!--          <el- class="logo-item" style="display:inline-block;">-->
-<!--            <h3>Logo</h3>-->
-<!--          </el->-->
           <el-menu-item class="logo-item">
-            logo
+            <router-link to="index">
+              logo
+            </router-link>
+          </el-menu-item>
+          <el-menu-item @click="hiddenOrShowNav" title="收起菜单">
+            <i class="el-icon-s-fold"></i>
           </el-menu-item>
           <el-submenu index="1" style="float: right">
             <template slot="title">
@@ -26,10 +28,12 @@
               <el-menu-item index="editUserInfo">编辑资料</el-menu-item>
             </router-link>
             <el-menu-item index="modifyPwd">修改密码</el-menu-item>
-            <router-link to="/">
-              <el-menu-item index="logout">退出系统</el-menu-item>
-            </router-link>
+            <el-menu-item index="logout" @click="logout">退出系统</el-menu-item>
           </el-submenu>
+          <el-menu-item index="2" style="float: right">
+            <i class="el-icon-s-comment"></i>
+            <span>消息中心</span>
+          </el-menu-item>
         </el-menu>
       </el-col>
       <!--    侧栏-->
@@ -50,39 +54,47 @@
               <span>首页</span>
             </template>
             <el-menu-item-group>
-              <template slot="title">分组一</template>
-              <el-menu-item index="1-1">选项1</el-menu-item>
-              <el-menu-item index="1-2">选项2</el-menu-item>
+              <el-menu-item>
+
+              </el-menu-item>
             </el-menu-item-group>
-            <el-menu-item-group title="分组2">
-              <el-menu-item index="1-3">选项3</el-menu-item>
-              <el-menu-item index="1-3">选项4</el-menu-item>
-              <el-menu-item index="1-3">选项5</el-menu-item>
-              <el-menu-item index="1-3">选项6</el-menu-item>
-              <el-menu-item index="1-3">选项7</el-menu-item>
-              <el-menu-item index="1-3">选项8</el-menu-item>
-            </el-menu-item-group>
-            <el-submenu index="1-4">
-              <template slot="title">选项4</template>
-              <el-menu-item index="1-4-1">选项1</el-menu-item>
-              <el-menu-item index="1-2">选项2</el-menu-item>
-              <el-menu-item index="1-3">选项3</el-menu-item>
-            </el-submenu>
           </el-submenu>
           <el-submenu index="2">
             <template slot="title">
               <i class="el-icon-menu"></i>
-              <span slot="title">工作台</span>
+              <span slot="title">交易管理</span>
             </template>
+            <el-menu-item-group title="订单管理">
+              <router-link to="">
+                <el-menu-item index="productSell">已卖出宝贝</el-menu-item>
+              </router-link>
+            </el-menu-item-group>
+            <el-menu-item-group title="物流管理">
+              <router-link to="">
+                <el-menu-item index="productShip">发货</el-menu-item>
+              </router-link>
+            </el-menu-item-group>
+            <el-menu-item-group title="投诉与申诉">
+              <router-link to="">
+                <el-menu-item index="complaint">我要投诉</el-menu-item>
+              </router-link>
+            </el-menu-item-group>
           </el-submenu>
-          <el-menu-item index="3">
-            <i class="el-icon-document"></i>
-            <span slot="title">导航三</span>
-          </el-menu-item>
+          <el-submenu index="3">
+            <template slot="title">
+              <i class="el-icon-document"></i>
+              <span slot="title">商品管理</span>
+            </template>
+            <el-menu-item-group title="商品管理">
+              <router-link to="">
+                <el-menu-item index="productShelves">上架管理</el-menu-item>
+              </router-link>
+            </el-menu-item-group>
+          </el-submenu>
           <el-submenu index="4">
             <template slot="title">
               <i class="el-icon-setting"></i>
-              <span slot="title">系统设置</span>
+              <span slot="title">店铺设置</span>
             </template>
             <el-menu-item-group title="用户设置">
               <router-link to="controlUser">
@@ -116,7 +128,7 @@
 
 <script>
 export default {
-  name: "Index",
+  name: "index",
   data() {
     return {
       isCollapse: false,
@@ -137,6 +149,23 @@ export default {
     handleSelect(key, keyPath) {
       console.log(key, keyPath)
     },
+    /**
+     * 退出登录
+     * 删除localStorage中的token
+     */
+    logout() {
+      localStorage.removeItem('token');
+      this.$router.push('/');
+    },
+    /**
+     * 显示隐藏侧边栏
+     */
+    hiddenOrShowNav() {
+      this.isCollapse === true ? this.isCollapse = false : this.isCollapse = true;
+    },
+    /**
+     * 获取昵称
+     */
     getParams() {
       this.userNick = this.$route.query.userNick
     }
@@ -145,15 +174,7 @@ export default {
 </script>
 
 <style scoped>
-* {
-  outline: none;
-  text-decoration: none;
-}
-
-body {
-  margin: 0;
-  padding: 0;
-}
+@import "../assets/css/public.css";
 
 .el-menu-vertical-demo::-webkit-scrollbar { /*滚动条整体样式*/
   width: 10px; /*高宽分别对应横竖滚动条的尺寸*/
@@ -172,15 +193,10 @@ body {
   background: #545c64;
 }
 
-.main-box {
-  width: 100%;
-  height: 100%;
-}
-
 .logo-item {
   color: #ffffff;
   margin-left: 100px;
-  font-family: "Sitka Display",serif;
+  font-family: "Sitka Display", serif;
   font-style: italic;
   font-size: 30px;
   text-align: center
