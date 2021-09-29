@@ -16,8 +16,8 @@
               logo
             </router-link>
           </el-menu-item>
-          <el-menu-item @click="hiddenOrShowNav" title="收起菜单">
-            <i class="el-icon-s-fold"></i>
+          <el-menu-item @click="hiddenOrShowNav" class="fold" title="收起菜单">
+            <i id="fold-menu" class="el-icon-s-fold"></i>
           </el-menu-item>
           <el-submenu index="1" style="float: right">
             <template slot="title">
@@ -161,7 +161,15 @@ export default {
      * 显示隐藏侧边栏
      */
     hiddenOrShowNav() {
-      this.isCollapse === true ? this.isCollapse = false : this.isCollapse = true;
+      if (this.isCollapse === true) {
+        this.isCollapse = false;
+        $(".fold").attr("title", "收起左侧侧边栏")
+        $("#fold-menu").removeClass("el-icon-s-unfold").addClass("el-icon-s-fold");
+      } else {
+        this.isCollapse = true;
+        $(".fold").attr("title", "展开左侧侧边栏")
+        $("#fold-menu").removeClass("el-icon-s-fold").addClass("el-icon-s-unfold");
+      }
     },
     /**
      * 获取昵称

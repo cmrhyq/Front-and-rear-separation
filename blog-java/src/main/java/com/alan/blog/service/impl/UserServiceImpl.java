@@ -72,8 +72,7 @@ public class UserServiceImpl implements UserService {
             } else {
                 // 密码错误
                 String databasePwd = queryLoginInfo.getUserPassword();
-                log.info(Encrypt.convertMD5(databasePwd));
-                if (!Encrypt.convertMD5(databasePwd).equals(userPassword)) {
+                if (!databasePwd.equals(userPassword)) {
                     returnResult.setCode(EnumErrorCode.ACC_PWD_ERR.getCode());
                     returnResult.setMsg(EnumErrorCode.ACC_PWD_ERR.getMessage());
                     returnResult.setStatus(EnumErrorCode.ACC_PWD_ERR.getStatus());

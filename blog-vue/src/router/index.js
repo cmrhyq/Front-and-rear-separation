@@ -37,16 +37,6 @@
 //   ]
 // })
 
-import Vue from 'vue'
-import Router from 'vue-router'
-
-Vue.use(Router)
-
-const login = r => require.ensure([], () => r(require('@/components/login')), 'login');
-const index = r => require.ensure([], () => r(require('@/components/index')), 'index');
-const controlUser = r => require.ensure([], () => r(require('@/components/controlUser')), 'controlUser');
-const editUserInfo = r => require.ensure([], () => r(require('@/components/editUserInfo')), 'index');
-const welcome = r => require.ensure([], () => r(require('@/components/welcome')), 'welcome');
 
 // const routes = [
 //   {
@@ -72,6 +62,23 @@ const welcome = r => require.ensure([], () => r(require('@/components/welcome'))
 //     ]
 //   }
 // ]
+
+// export default new Router({
+//   routes,
+// })
+
+
+import Vue from 'vue'
+import Router from 'vue-router'
+
+Vue.use(Router)
+
+const login = r => require.ensure([], () => r(require('@/components/login')), 'login');
+const index = r => require.ensure([], () => r(require('@/components/index')), 'index');
+const controlUser = r => require.ensure([], () => r(require('@/components/controlUser')), 'controlUser');
+const editUserInfo = r => require.ensure([], () => r(require('@/components/editUserInfo')), 'index');
+const welcome = r => require.ensure([], () => r(require('@/components/welcome')), 'welcome');
+
 
 const router = new Router({
   routes: [
@@ -102,6 +109,7 @@ const router = new Router({
 
 /**
  * 导航守卫
+ *
  * 使用router。beforeEach注册一个全局前置首位，判断用户是否登录
  */
 router.beforeEach((to, from, next) => {
@@ -119,6 +127,4 @@ router.beforeEach((to, from, next) => {
 
 export default router
 
-// export default new Router({
-//   routes,
-// })
+

@@ -1,6 +1,6 @@
 # blog-vue
 
-> A Vue.js project
+> A VueDES.js project
 
 ## Build Setup
 
