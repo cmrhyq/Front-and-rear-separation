@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.alan.blog.mapper.UserMapper">
+<mapper namespace="com.alan.blog.mapper.BlogMapper">
 
     <select id="login" resultType="UserLogin">
         SELECT user_login.user_id            as userId,
@@ -42,4 +42,24 @@
         FROM user_info
         WHERE user_info.user_login_id = #{userLoginId}
     </select>
+
+    <select id="querySystemKey" resultType="SystemKey">
+        SELECT system_key.public_key  as publicKey,
+               system_key.private_key as privateKey
+        FROM system_key
+    </select>
+
+    <insert id="insertSystemKey" parameterType="hashmap" keyProperty="key_id" useGeneratedKeys="true">
+        INSERT INTO system_key (key_id, public_key, private_key)
+        VALUES (null, #{PRIVATE_KEY}, #{PUBLIC_KEY})
+    </insert>
+
+    <update id="updateSystemKey" parameterType="hashmap">
+        update system_key
+        <trim prefix="set" suffixOverrides=",">
+            <if test="PUBLIC_KEY != null">public_key = #{PUBLIC_KEY},</if>
+            <if test="PRIVATE_KEY != null">private_key = #{PRIVATE_KEY},</if>
+        </trim>
+        where key_id = 1
+    </update>
 </mapper>

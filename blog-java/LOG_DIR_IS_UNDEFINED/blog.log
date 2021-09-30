@@ -82,7 +82,7 @@
 2021-09-29 15:53:16,408 [DEBUG] [restartedMain] [DefaultSingletonBeanRegistry.java : 225] Creating shared instance of singleton bean 'propertySourcesPlaceholderConfigurer'
 2021-09-29 15:53:16,418 [DEBUG] [restartedMain] [LogFactory.java : 105] Logging initialized using 'class org.apache.ibatis.logging.slf4j.Slf4jImpl' adapter.
 2021-09-29 15:53:16,420 [DEBUG] [restartedMain] [ClassPathScanningCandidateComponentProvider.java : 435] Identified candidate component class: file [D:\GitHub\Front-and-rear-separation\blog-java\target\classes\com\alan\blog\mapper\UserMapper.class]
-2021-09-29 15:53:16,421 [DEBUG] [restartedMain] [Logger.java : 49] Creating MapperFactoryBean with name 'userMapper' and 'com.alan.blog.mapper.UserMapper' mapperInterface
+2021-09-29 15:53:16,421 [DEBUG] [restartedMain] [Logger.java : 49] Creating MapperFactoryBean with name 'userMapper' and 'com.alan.blog.mapper.BlogMapper' mapperInterface
 2021-09-29 15:53:16,422 [DEBUG] [restartedMain] [Logger.java : 49] Enabling autowire by type for MapperFactoryBean with name 'userMapper'.
 2021-09-29 15:53:16,474 [DEBUG] [restartedMain] [DefaultSingletonBeanRegistry.java : 225] Creating shared instance of singleton bean 'emBeanDefinitionRegistrarPostProcessor'
 2021-09-29 15:53:16,474 [DEBUG] [restartedMain] [DefaultSingletonBeanRegistry.java : 225] Creating shared instance of singleton bean 'org.springframework.boot.devtools.autoconfigure.DevToolsDataSourceAutoConfiguration$DatabaseShutdownExecutorEntityManagerFactoryDependsOnPostProcessor'

@@ -2,7 +2,7 @@ package com.alan.blog.service.impl;
 
 import com.alan.blog.entity.UserInfo;
 import com.alan.blog.entity.UserLogin;
-import com.alan.blog.mapper.UserMapper;
+import com.alan.blog.mapper.BlogMapper;
 import com.alan.blog.service.UserService;
 import com.alan.blog.utils.*;
 import lombok.extern.slf4j.Slf4j;
@@ -33,7 +33,7 @@ public class UserServiceImpl implements UserService {
 //    request.getSession().getId()
 
     @Autowired
-    private UserMapper userMapper;
+    private BlogMapper blogMapper;
 
     /**
      * 登录
@@ -51,7 +51,7 @@ public class UserServiceImpl implements UserService {
         // 最后登录时间
         Timestamp userLastTime = new Timestamp(System.currentTimeMillis());
         // 根据手机号查询数据
-        UserLogin queryLoginInfo = userMapper.login(userPhone);
+        UserLogin queryLoginInfo = blogMapper.login(userPhone);
         if (queryLoginInfo == null) {
             // 账号未注册
             returnResult.setCode(EnumErrorCode.ACC_NO_REG.getCode());
@@ -64,7 +64,7 @@ public class UserServiceImpl implements UserService {
                 updateUserResult.setUserLastTime(userLastTime);
                 updateUserResult.setUserLastLoginIp(IPUtil.getIP(HttpContextUtil.getHttpServletRequest()));
                 updateUserResult.setUserId(queryLoginInfo.getUserId());
-                userMapper.updateUserInfo(updateUserResult);
+                blogMapper.updateUserInfo(updateUserResult);
                 // 将结果返回
                 returnResult.setCode(EnumErrorCode.ACC_FREEZE.getCode());
                 returnResult.setMsg(EnumErrorCode.ACC_FREEZE.getMessage());
@@ -77,12 +77,12 @@ public class UserServiceImpl implements UserService {
                     returnResult.setMsg(EnumErrorCode.ACC_PWD_ERR.getMessage());
                     returnResult.setStatus(EnumErrorCode.ACC_PWD_ERR.getStatus());
                 } else {
-                    UserInfo queryUserInfo = userMapper.queryUserInfo(queryLoginInfo.getUserId());
+                    UserInfo queryUserInfo = blogMapper.queryUserInfo(queryLoginInfo.getUserId());
                     // 最后登录时间和最后登录ip存入数据库
                     updateUserResult.setUserLastTime(userLastTime);
                     updateUserResult.setUserLastLoginIp(IPUtil.getIP(HttpContextUtil.getHttpServletRequest()));
                     updateUserResult.setUserId(queryLoginInfo.getUserId());
-                    userMapper.updateUserInfo(updateUserResult);
+                    blogMapper.updateUserInfo(updateUserResult);
                     // 生成token并返回结果和数据
                     Map<String, String> map = new HashMap<>();
                     List<Map<String, String>> list = new ArrayList<>();
@@ -102,4 +102,5 @@ public class UserServiceImpl implements UserService {
         }
         return returnResult;
     }
+
 }

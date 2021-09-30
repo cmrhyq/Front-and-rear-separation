@@ -37,10 +37,9 @@
 </template>
 
 <script>
-import message from '../assets/js/message'
+import md5 from "js-md5";
 import {successTips, failTips, infoTips, warnTips, saveSuccess, outputTips} from "../assets/js/tipsInfo";
 import axios from 'axios'
-import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
 import {mapMutations} from "vuex";
 
@@ -80,6 +79,7 @@ export default {
           warnTips('您的手机号码填写有误！0_0')
         } else {
           axios.post(url + '/user/login/', this.loginData).then((res) => {
+            console.log(res.data)
             // 判断是否登录成功
             // 根据后端返回的自定义状态码判断
             // 登录成功

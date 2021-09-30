@@ -22,15 +22,15 @@ public class EccTest {
 
     public static void main(String[] args) throws Exception {
         Map<String, String> map = GenerateKey.getGenerateKey();
-        String privKey = map.get(ECCEnum.PRIVATE_KEY.value());
-        String pubKey = map.get(ECCEnum.PUBLIC_KEY.value());
-        log.info("私钥：" + privKey);
-        log.info("公钥：" + pubKey);
+        String privateKey = map.get(ECCEnum.PRIVATE_KEY.value());
+        String publicKey = map.get(ECCEnum.PUBLIC_KEY.value());
+        log.info("私钥：" + privateKey);
+        log.info("公钥：" + publicKey);
         String text = "Hyq199891@hyq0901.";
-        byte[] b = EccUtils.encrypt(text.getBytes(StandardCharsets.UTF_8), pubKey);
+        byte[] b = EccUtils.encrypt(text.getBytes(StandardCharsets.UTF_8), publicKey);
         String str = BASE64Encoder.encodeBuffer(b);
         log.info("密文：" + str);
-        String outputStr = new String(EccUtils.decrypt(b, privKey));
+        String outputStr = new String(EccUtils.decrypt(b, privateKey));
         log.info("原始文本：" + text);
         log.info("解密文本：" + outputStr);
         // 断言

@@ -1,22 +1,22 @@
 package com.alan.blog.controller;
 
+import com.alan.blog.entity.SystemKey;
 import com.alan.blog.entity.UserLogin;
+import com.alan.blog.service.SystemService;
 import com.alan.blog.service.UserService;
 import com.alan.blog.utils.EnumErrorCode;
 import com.alan.blog.utils.Result;
 import com.alan.blog.utils.TokenUtil;
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.Map;
+import java.security.NoSuchAlgorithmException;
+import java.security.NoSuchProviderException;
 
 /**
  * <p></p>

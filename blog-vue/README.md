@@ -1,6 +1,6 @@
 # blog-vue
 
-> A VueDES.js project
+> a vue project demo
 
 ## Build Setup
 

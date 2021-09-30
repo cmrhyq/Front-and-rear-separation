@@ -8,7 +8,7 @@
 </template>
 
 <script>
-import axios from "_axios@0.21.4@axios";
+import axios from "axios";
 import {failTips, successTips, warnTips, outputTips} from "../assets/js/tipsInfo";
 
 export default {
@@ -23,7 +23,6 @@ export default {
     tokenCheck() {
       var url = 'http://localhost:7778'
       axios.post(url + '/user/test/').then((res) => {
-        console.log(res.data)
         outputTips(res.data)
       }).catch(function (error) {
         console.log(error)
