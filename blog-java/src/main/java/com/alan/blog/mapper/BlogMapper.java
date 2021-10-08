@@ -4,6 +4,7 @@ import com.alan.blog.entity.SystemKey;
 import com.alan.blog.entity.UserInfo;
 import com.alan.blog.entity.UserLogin;
 
+import javax.persistence.MapKey;
 import java.util.List;
 import java.util.Map;
 
@@ -19,6 +20,21 @@ import java.util.Map;
  * @email cmrhyq@163.com
  */
 public interface BlogMapper {
+
+    /**
+     * 根据手机号查询用户的所有信息
+     *
+     * @param userPhone 手机号
+     * @return 用户组合信息
+     */
+    Map<String, Object> queryInfoAsUserPhone(String userPhone);
+
+    /**
+     * 查询所有用户登录信息
+     *
+     * @return 用户信息
+     */
+    List<Map<String, Object>> queryUserLoginAll();
 
     /**
      * 根据手机号查询用户信息

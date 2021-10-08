@@ -17,6 +17,8 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.security.NoSuchAlgorithmException;
 import java.security.NoSuchProviderException;
+import java.util.List;
+import java.util.Map;
 
 /**
  * <p></p>
@@ -38,6 +40,19 @@ public class UserController {
     private UserService userService;
 
     /**
+     * 根据手机号查询用户的所有信息
+     *
+     * @param user 手机号
+     * @return 用户信息
+     */
+    @ResponseBody
+    @PostMapping("/queryInfoAsPhone")
+    public Map<String, Object> queryInfoAsPhone(@RequestBody UserLogin user) {
+        log.info("'---"+user.getUserPhone()+"---'");
+        return userService.queryInfoAsUserPhone(user.getUserPhone());
+    }
+
+    /**
      * 登录
      *
      * @param user
@@ -46,8 +61,19 @@ public class UserController {
      */
     @ResponseBody
     @PostMapping("/login")
-    public Result login(@RequestBody UserLogin user) throws JsonProcessingException {
+    public Result login(@RequestBody UserLogin user) throws Exception {
         return userService.login(user.getUserPhone(), user.getUserPassword());
+    }
+
+    /**
+     * 用户账号控制信息
+     *
+     * @return List<Map < String, String>>
+     */
+    @ResponseBody
+    @PostMapping("/table/controllerUser")
+    public List<Map<String, Object>> controllerUser() {
+        return userService.controllerUser();
     }
 
     /**

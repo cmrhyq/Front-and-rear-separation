@@ -9,28 +9,44 @@
       </el-breadcrumb>
     </div>
     <el-table
+      border
       :data="tableData.filter(
       data => !search ||
-      data.id.includes(search) ||
-      data.name.toLowerCase().includes(search.toLowerCase()) ||
-      data.nick.includes(search) ||
-      data.phone.includes(search))"
+      // data.name.toLowerCase().includes(search.toLowerCase()) ||
+      data.userPhone.includes(search))"
+      stripe="stripe"
       fit>
       <el-table-column
         label="Id"
-        prop="id">
-      </el-table-column>
-      <el-table-column
-        label="Name"
-        prop="name">
-      </el-table-column>
-      <el-table-column
-        label="Nick"
-        prop="nick">
+        prop="userId">
       </el-table-column>
       <el-table-column
         label="Phone"
-        prop="phone">
+        prop="userPhone">
+      </el-table-column>
+      <el-table-column
+        label="Password"
+        prop="userPassword">
+      </el-table-column>
+      <el-table-column
+        label="Account status"
+        prop="userStatus">
+      </el-table-column>
+      <el-table-column
+        label="Register time"
+        prop="userRegTime">
+      </el-table-column>
+      <el-table-column
+        label="Last login time"
+        prop="userLastLoginIp">
+      </el-table-column>
+      <el-table-column
+        label="Last login ip"
+        prop="userLastTime">
+      </el-table-column>
+      <el-table-column
+        label="Session id"
+        prop="userSession">
       </el-table-column>
       <el-table-column
         align="right">
@@ -58,16 +74,14 @@
 </template>
 
 <script>
+import axios from "axios";
+import {outputTips} from "../assets/js/tipsInfo";
+
 export default {
   name: "ControlUser",
   data() {
     return {
-      tableData: [{
-        id: '待',
-        name: '开',
-        nick: "发",
-        phone: '中'
-      }],
+      tableData: [],
       search: ''
     }
   },
@@ -76,7 +90,15 @@ export default {
   },
   methods: {
     loadTableData() {
-
+      var url = 'http://localhost:7778'
+      axios.post(url + '/user/table/controllerUser/').then((res) => {
+        if (res.data.code === 5){
+          outputTips(res.data)
+        }
+        this.tableData = res.data;
+      }).catch(function (error) {
+        console.log(error)
+      })
     },
     handleEdit(index, row) {
       console.log(index, row)

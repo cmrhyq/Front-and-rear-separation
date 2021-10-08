@@ -127,6 +127,8 @@
 </template>
 
 <script>
+import store from "../store";
+
 export default {
   name: "index",
   data() {
@@ -138,6 +140,11 @@ export default {
   },
   created() {
     this.getParams()
+  },
+  beforeRouteEnter(to, from, next) {
+    // 添加背景色 margin:0;padding:0是为了解决vue四周有白边的问题
+    document.querySelector('body').setAttribute('style','margin:0;padding:0')
+    next()
   },
   methods: {
     handleOpen(key, keyPath) {
@@ -175,7 +182,7 @@ export default {
      * 获取昵称
      */
     getParams() {
-      this.userNick = this.$route.query.userNick
+      this.userNick = localStorage.getItem('nick');
     }
   }
 }

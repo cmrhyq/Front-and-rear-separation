@@ -30,7 +30,7 @@ public enum EnumErrorCode implements ErrorMessages {
       /**
        * token认证失败，未通过拦截器
        */
-      AUTHEN_FAIL("000005","认证失败,未通过拦截器",5),
+      AUTHEN_FAIL("000005","认证失败,请先登录",5),
 
       /**
        * 请求成功，success

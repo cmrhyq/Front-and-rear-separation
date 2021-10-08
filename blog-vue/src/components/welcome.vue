@@ -23,7 +23,7 @@ export default {
     tokenCheck() {
       var url = 'http://localhost:7778'
       axios.post(url + '/user/test/').then((res) => {
-        outputTips(res.data)
+          outputTips(res.data)
       }).catch(function (error) {
         console.log(error)
       })

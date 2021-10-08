@@ -78,8 +78,8 @@ export default {
         if (!phoneVerify.test(this.loginData.userPhone)) {
           warnTips('您的手机号码填写有误！0_0')
         } else {
-          axios.post(url + '/user/login/', this.loginData).then((res) => {
-            console.log(res.data)
+          var user = {userPhone: userPhone, userPassword: md5(userPassword)}
+          axios.post(url + '/user/login/', user).then((res) => {
             // 判断是否登录成功
             // 根据后端返回的自定义状态码判断
             // 登录成功
@@ -94,29 +94,27 @@ export default {
                   1
                 );
               } else {
-                // 登录失败 清除信息
+                // 登录失败 cookie信息清除
                 this.clearCookie();
               }
-              // successTips("欢迎用户：" + res.data.list[0].userInfoNick)
               //将用户token 存入vuex
-              this.userToken = res.data.token
-              this.changeLogin({token: this.userToken})
-              // 向主页传值
-              this.$router.push({
-                path: '/index',
-                query: {
-                  userName: res.data.list[0].userInfoName,
-                  userNick: res.data.list[0].userInfoNick,
-                  userSex: res.data.list[0].userInfoSex,
-                  userPhone: res.data.list[0].userInfoPhone,
-                  userIp: res.data.list[0].userInfoIp
-                }
-              });
+              this.userToken = res.data.data[0].userToken;
+              this.userNick = res.data.data[0].userInfoNick;
+              this.userSex = res.data.data[0].userInfoSex;
+              this.userPhone = res.data.data[0].userInfoPhone;
+              this.changeLogin({
+                token: this.userToken,
+                nick: this.userNick,
+                sex: this.userSex,
+                phone: this.userPhone
+              })
+              // 页面跳转
+              this.$router.push({path: '/index'});
             } else {
               // 登录失败 弹出提示信息
-              // failTips(res.data.msg)
               this.clearCookie();
             }
+            // 弹出提示信息
             outputTips(res.data)
           }).catch(function (error) {
             console.log(error)

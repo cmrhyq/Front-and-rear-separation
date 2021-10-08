@@ -3,6 +3,46 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.alan.blog.mapper.BlogMapper">
 
+    <select id="queryInfoAsUserPhone" resultType="hashmap">
+        SELECT ul.user_id             as userId,
+               ul.user_phone          as userPhone,
+               ul.user_password       as userPassword,
+               ul.user_reg_time       as userRegTime,
+               ul.user_last_time      as userLastTime,
+               ul.user_status         as userStatus,
+               ul.user_session_id     as userSession,
+               ul.user_last_login_ip  as userLastLoginIp,
+               ui.user_info_id        as userInfoId,
+               ui.user_info_sex       as userInfoSex,
+               ui.user_info_nick      as userInfoNick,
+               ui.user_info_name      as userInfoName,
+               ui.user_info_id_number as userInfoIdNumber,
+               ui.user_info_id_type   as userInfoIdType,
+               ui.user_info_province  as userInfoProvince,
+               ui.user_info_address   as userInfoAddress,
+               ui.user_login_id       as userinfoLoginId
+        FROM user_login as ul,
+             user_info as ui
+        WHERE ul.user_phone = #{userPhone}
+          AND ui.user_login_id = (
+            SELECT user_id
+            FROM user_login
+            WHERE user_phone = #{userPhone}
+        )
+    </select>
+
+    <select id="queryUserLoginAll" resultType="hashmap">
+        SELECT user_login.user_id            as userId,
+               user_login.user_phone         as userPhone,
+               user_login.user_password      as userPassword,
+               user_login.user_reg_time      as userRegTime,
+               user_login.user_last_time     as userLastTime,
+               user_login.user_status        as userStatus,
+               user_login.user_session_id    as userSession,
+               user_login.user_last_login_ip as userLastLoginIp
+        FROM user_login
+    </select>
+
     <select id="login" resultType="UserLogin">
         SELECT user_login.user_id            as userId,
                user_login.user_phone         as userPhone,
@@ -62,4 +102,6 @@
         </trim>
         where key_id = 1
     </update>
+
+
 </mapper>

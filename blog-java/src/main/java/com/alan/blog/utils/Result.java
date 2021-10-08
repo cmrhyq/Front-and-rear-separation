@@ -3,6 +3,8 @@ package com.alan.blog.utils;
 import lombok.Data;
 
 import java.util.List;
+import java.util.Map;
+import java.util.Optional;
 
 /**
  * <p></p>
@@ -16,11 +18,10 @@ import java.util.List;
  * @email cmrhyq@163.com
  */
 @Data
-public class Result {
+public class Result<T> {
     private String code;
+    private List<?> data;
     private String msg;
     private Integer status;
-    private List<?> list;
-    private String token;
-    private Object obj;
+
 }

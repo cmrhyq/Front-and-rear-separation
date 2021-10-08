@@ -1,5 +1,7 @@
 package com.alan.blog.entity;
 
+import lombok.Data;
+
 import java.sql.Timestamp;
 
 /**
@@ -13,6 +15,7 @@ import java.sql.Timestamp;
  * @date 2021/9/15-17:53
  * @email cmrhyq@163.com
  */
+@Data
 public class UserLogin {
 
     /**
@@ -48,67 +51,4 @@ public class UserLogin {
      */
     private String userLastLoginIp;
 
-    public Integer getUserId() {
-        return userId;
-    }
-
-    public void setUserId(Integer userId) {
-        this.userId = userId;
-    }
-
-    public String getUserPhone() {
-        return userPhone;
-    }
-
-    public void setUserPhone(String userPhone) {
-        this.userPhone = userPhone;
-    }
-
-    public String getUserPassword() {
-        return userPassword;
-    }
-
-    public void setUserPassword(String userPassword) {
-        this.userPassword = userPassword;
-    }
-
-    public Timestamp getUserRegTime() {
-        return userRegTime;
-    }
-
-    public void setUserRegTime(Timestamp userRegTime) {
-        this.userRegTime = userRegTime;
-    }
-
-    public Timestamp getUserLastTime() {
-        return userLastTime;
-    }
-
-    public void setUserLastTime(Timestamp userLastTime) {
-        this.userLastTime = userLastTime;
-    }
-
-    public Integer getUserStatus() {
-        return userStatus;
-    }
-
-    public void setUserStatus(Integer userStatus) {
-        this.userStatus = userStatus;
-    }
-
-    public String getUserSessionId() {
-        return userSessionId;
-    }
-
-    public void setUserSessionId(String userSessionId) {
-        this.userSessionId = userSessionId;
-    }
-
-    public String getUserLastLoginIp() {
-        return userLastLoginIp;
-    }
-
-    public void setUserLastLoginIp(String userLastLoginIp) {
-        this.userLastLoginIp = userLastLoginIp;
-    }
 }
