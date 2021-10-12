@@ -8,68 +8,66 @@
         <el-breadcrumb-item>用户控制</el-breadcrumb-item>
       </el-breadcrumb>
     </div>
-    <el-table
-      border
-      :data="tableData.filter(
-      data => !search ||
-      // data.name.toLowerCase().includes(search.toLowerCase()) ||
-      data.userPhone.includes(search))"
-      stripe="stripe"
-      fit>
-      <el-table-column
-        label="Id"
-        prop="userId">
-      </el-table-column>
-      <el-table-column
-        label="Phone"
-        prop="userPhone">
-      </el-table-column>
-      <el-table-column
-        label="Password"
-        prop="userPassword">
-      </el-table-column>
-      <el-table-column
-        label="Account status"
-        prop="userStatus">
-      </el-table-column>
-      <el-table-column
-        label="Register time"
-        prop="userRegTime">
-      </el-table-column>
-      <el-table-column
-        label="Last login time"
-        prop="userLastLoginIp">
-      </el-table-column>
-      <el-table-column
-        label="Last login ip"
-        prop="userLastTime">
-      </el-table-column>
-      <el-table-column
-        label="Session id"
-        prop="userSession">
-      </el-table-column>
-      <el-table-column
-        align="right">
-        <template slot="header" slot-scope="scope">
-          <el-input
-            v-model="search"
-            size="mini"
-            placeholder="输入关键字搜索"/>
-        </template>
-        <template slot-scope="scope">
-          <el-button
-            size="mini"
-            @click="handleEdit(scope.$index, scope.row)">Edit
-          </el-button>
-          <el-button
-            size="mini"
-            type="danger"
-            @click="handleDelete(scope.$index, scope.row)">Delete
-          </el-button>
-        </template>
-      </el-table-column>
-    </el-table>
-
+    <el-divider></el-divider>
+    <el-card class="body-box">
+      <el-table
+        border
+        :data="tableData.filter(
+        data => !search ||
+        // data.name.toLowerCase().includes(search.toLowerCase()) ||
+        data.userPhone.includes(search))"
+        stripe="stripe"
+        fit>
+        <el-table-column
+          label="Id"
+          prop="userId">
+        </el-table-column>
+        <el-table-column
+          label="Phone"
+          prop="userPhone">
+        </el-table-column>
+        <el-table-column
+          label="Password"
+          prop="userPassword">
+        </el-table-column>
+        <el-table-column
+          label="Account status"
+          prop="userStatus">
+        </el-table-column>
+        <el-table-column
+          label="Register time"
+          prop="userRegTime">
+        </el-table-column>
+        <el-table-column
+          label="Last login ip"
+          prop="userLastLoginIp">
+        </el-table-column>
+        <el-table-column
+          label="Last login time"
+          prop="userLastTime">
+        </el-table-column>
+        <el-table-column
+          align="right">
+          <template slot="header" slot-scope="scope">
+            <el-input
+              v-model="search"
+              size="mini"
+              placeholder="输入关键字搜索"/>
+          </template>
+          <template slot-scope="scope">
+            <el-button
+              size="mini"
+              @click="handleEdit(scope.$index, scope.row)">Edit
+            </el-button>
+            <el-button
+              size="mini"
+              type="danger"
+              @click="handleDelete(scope.$index, scope.row)">Delete
+            </el-button>
+          </template>
+        </el-table-column>
+      </el-table>
+    </el-card>
   </div>
 </template>
 
@@ -92,8 +90,10 @@ export default {
     loadTableData() {
       var url = 'http://localhost:7778'
       axios.post(url + '/user/table/controllerUser/').then((res) => {
-        if (res.data.code === 5){
+        if (res.data.code === 5) {
           outputTips(res.data)
+          // 页面跳转
+          this.$router.push({path: '/'});
         }
         this.tableData = res.data;
       }).catch(function (error) {
@@ -112,7 +112,11 @@ export default {
 
 <style scoped>
 @import "../assets/css/public.css";
-el-table{
+
+el-table {
+  margin: 0 auto;
+}
+.body-box {
   margin: 0 auto;
 }
 </style>

@@ -24,6 +24,10 @@ export default {
       var url = 'http://localhost:7778'
       axios.post(url + '/user/test/').then((res) => {
           outputTips(res.data)
+        if(res.data.code === 5){
+          // 页面跳转
+          this.$router.push({path: '/'});
+        }
       }).catch(function (error) {
         console.log(error)
       })

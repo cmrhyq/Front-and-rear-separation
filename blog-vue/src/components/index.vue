@@ -47,7 +47,7 @@
           text-color="#fff"
           active-text-color="#ffd04b"
           :collapse="isCollapse"
-          style="height: 880px;overflow:auto;">
+          style="height: 930px;overflow:auto;">
           <el-submenu index="1">
             <template slot="title">
               <i class="el-icon-location"></i>
@@ -127,8 +127,6 @@
 </template>
 
 <script>
-import store from "../store";
-
 export default {
   name: "index",
   data() {
@@ -215,5 +213,14 @@ export default {
   font-style: italic;
   font-size: 30px;
   text-align: center
+}
+
+html,
+body,
+#app,
+.main-box,
+el-row,
+el-col {
+  height: 100%;
 }
 </style>

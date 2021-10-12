@@ -12,12 +12,13 @@
                ul.user_status         as userStatus,
                ul.user_session_id     as userSession,
                ul.user_last_login_ip  as userLastLoginIp,
-               ui.user_info_id        as userInfoId,
-               ui.user_info_sex       as userInfoSex,
                ui.user_info_nick      as userInfoNick,
                ui.user_info_name      as userInfoName,
+               ui.user_info_sex       as userInfoSex,
+               ui.user_info_age       as userInfoAge,
                ui.user_info_id_number as userInfoIdNumber,
                ui.user_info_id_type   as userInfoIdType,
+               ui.user_info_email     as userInfoEmail,
                ui.user_info_province  as userInfoProvince,
                ui.user_info_address   as userInfoAddress,
                ui.user_login_id       as userinfoLoginId
@@ -30,6 +31,22 @@
             WHERE user_phone = #{userPhone}
         )
     </select>
+
+    <update id="updateUserInfo" parameterType="hashmap">
+        update user_info
+        <trim prefix="set" suffixOverrides=",">
+            <if test="userInfoNick != null">user_info_nick = #{userInfoNick},</if>
+            <if test="userInfoName != null">user_info_name = #{userInfoName},</if>
+            <if test="userInfoSex != null">user_info_sex = #{userInfoSex},</if>
+            <if test="userInfoAge != null">user_info_age = #{userInfoAge},</if>
+            <if test="userInfoIdNumber != null">user_info_id_number = #{userInfoIdNumber},</if>
+            <if test="userInfoIdType != null">user_info_id_type = #{userInfoIdType},</if>
+            <if test="userInfoEmail != null">user_info_email = #{userInfoEmail},</if>
+            <if test="userInfoProvince != null">user_info_province = #{userInfoProvince},</if>
+            <if test="userInfoAddress != null">user_info_address = #{userInfoAddress},</if>
+        </trim>
+        where user_login_id = #{userLoginId}
+    </update>
 
     <select id="queryUserLoginAll" resultType="hashmap">
         SELECT user_login.user_id            as userId,
@@ -56,7 +73,7 @@
         WHERE user_login.user_phone = #{userPhone}
     </select>
 
-    <update id="updateUserInfo" parameterType="hashmap">
+    <update id="updateUserLoginInfo" parameterType="hashmap">
         update user_login
         <trim prefix="set" suffixOverrides=",">
             <if test="userPhone != null">user_phone = #{userPhone},</if>
@@ -71,11 +88,13 @@
 
     <select id="queryUserInfo" resultType="UserInfo">
         SELECT user_info.user_info_id        as userInfoId,
-               user_info.user_info_sex       as userInfoSex,
                user_info.user_info_nick      as userInfoNick,
                user_info.user_info_name      as userInfoName,
+               user_info.user_info_sex       as userInfoSex,
+               user_info.user_info_age       as userInfoAge,
                user_info.user_info_id_number as userInfoIdNumber,
                user_info.user_info_id_type   as userInfoIdType,
+               user_info.user_info_email     as userInfoEmail,
                user_info.user_info_province  as userInfoProvince,
                user_info.user_info_address   as userInfoAddress,
                user_info.user_login_id       as userinfoLoginId

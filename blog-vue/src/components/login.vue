@@ -1,39 +1,41 @@
 <template>
-  <el-card class="box-card" shadow="always">
-    <div slot="header" class="clearfix">
-      <el-icon class="el-icon-user"></el-icon>
-      <span>登录</span>
-    </div>
-    <el-form :model="loginData" status-icon ref="loginData" label-width="60px" class="demo-ruleForm">
-      <el-form-item label="手机号">
-        <el-input
-          type="text"
-          v-model="loginData.userPhone"
-          prefix-icon="el-icon-mobile-phone"
-          clearable
-          autocomplete="off">
-        </el-input>
-      </el-form-item>
-      <el-form-item label="密码">
-        <el-input
-          type="password"
-          v-model="loginData.userPassword"
-          prefix-icon="el-icon-lock"
-          clearable
-          show-password
-          @keyup.enter.native="doLogin"
-          autocomplete="off">
-        </el-input>
-      </el-form-item>
-      <el-form-item>
-        <el-checkbox v-model="checked">记住密码</el-checkbox>
-      </el-form-item>
-      <el-form-item>
-        <el-button type="primary" @click="doLogin()">登录</el-button>
-        <el-button @click="">注册</el-button>
-      </el-form-item>
-    </el-form>
-  </el-card>
+  <div>
+    <el-card class="box-card" shadow="always">
+      <div slot="header" class="clearfix">
+        <el-icon class="el-icon-user"></el-icon>
+        <span>登录</span>
+      </div>
+      <el-form :model="loginData" status-icon ref="loginData" label-width="60px" class="demo-ruleForm">
+        <el-form-item label="手机号">
+          <el-input
+            type="text"
+            v-model="loginData.userPhone"
+            prefix-icon="el-icon-mobile-phone"
+            clearable
+            autocomplete="off">
+          </el-input>
+        </el-form-item>
+        <el-form-item label="密码">
+          <el-input
+            type="password"
+            v-model="loginData.userPassword"
+            prefix-icon="el-icon-lock"
+            clearable
+            show-password
+            @keyup.enter.native="doLogin"
+            autocomplete="off">
+          </el-input>
+        </el-form-item>
+        <el-form-item>
+          <el-checkbox v-model="checked">记住密码</el-checkbox>
+        </el-form-item>
+        <el-form-item>
+          <el-button type="primary" @click="doLogin()">登录</el-button>
+          <router-link to="/reg"><el-button>注册</el-button></router-link>
+        </el-form-item>
+      </el-form>
+    </el-card>
+  </div>
 </template>
 
 <script>
@@ -153,7 +155,7 @@ export default {
     document.querySelector("body").setAttribute("style", "background-color: #96B7C4;")
   },
   beforeDestroy() {
-    document.querySelector("body").removeAttribute("style")
+    // document.querySelector("body").removeAttribute("style")
   }
 }
 </script>

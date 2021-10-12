@@ -74,6 +74,7 @@ import Router from 'vue-router'
 Vue.use(Router)
 
 const login = r => require.ensure([], () => r(require('@/components/login')), 'login');
+const register = r => require.ensure([], () => r(require('@/components/register')), 'register');
 const index = r => require.ensure([], () => r(require('@/components/index')), 'index');
 const controlUser = r => require.ensure([], () => r(require('@/components/controlUser')), 'controlUser');
 const editUserInfo = r => require.ensure([], () => r(require('@/components/editUserInfo')), 'index');
@@ -85,6 +86,9 @@ const router = new Router({
     {
       path: '/',
       component: login
+    },{
+      path: "/reg",
+      component: register
     }, {
       path: '/index',
       component: index,
@@ -110,7 +114,7 @@ const router = new Router({
 /**
  * 导航守卫
  *
- * 使用router。beforeEach注册一个全局前置首位，判断用户是否登录
+ * 使用router.beforeEach注册一个全局前置首位，判断用户是否登录
  */
 router.beforeEach((to, from, next) => {
   if (to.path === '/') {

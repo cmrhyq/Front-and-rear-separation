@@ -22,8 +22,6 @@ const store = new Vuex.Store({
       localStorage.setItem('sex', user.sex);
       state.phone = user.phone;
       localStorage.setItem('phone', user.phone);
-      console.log("user nick:"+user.nick)
-      console.log("state nick:"+state.nick)
     }
   }
 });

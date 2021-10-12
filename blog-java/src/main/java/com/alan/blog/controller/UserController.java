@@ -1,6 +1,7 @@
 package com.alan.blog.controller;
 
 import com.alan.blog.entity.SystemKey;
+import com.alan.blog.entity.UserInfo;
 import com.alan.blog.entity.UserLogin;
 import com.alan.blog.service.SystemService;
 import com.alan.blog.service.UserService;
@@ -48,7 +49,6 @@ public class UserController {
     @ResponseBody
     @PostMapping("/queryInfoAsPhone")
     public Map<String, Object> queryInfoAsPhone(@RequestBody UserLogin user) {
-        log.info("'---"+user.getUserPhone()+"---'");
         return userService.queryInfoAsUserPhone(user.getUserPhone());
     }
 
@@ -65,6 +65,16 @@ public class UserController {
         return userService.login(user.getUserPhone(), user.getUserPassword());
     }
 
+    @ResponseBody
+    @PostMapping("/register")
+    public Result register(){
+        Result returnResult = new Result();
+        returnResult.setCode(EnumErrorCode.REG_SUCCESS.getCode());
+        returnResult.setMsg(EnumErrorCode.REG_SUCCESS.getMessage());
+        returnResult.setStatus(EnumErrorCode.REG_SUCCESS.getStatus());
+        return returnResult;
+    }
+
     /**
      * 用户账号控制信息
      *
@@ -74,6 +84,19 @@ public class UserController {
     @PostMapping("/table/controllerUser")
     public List<Map<String, Object>> controllerUser() {
         return userService.controllerUser();
+    }
+
+    /**
+     * 更新用户信息
+     *
+     * @param userInfo 用户喜喜
+     * @return 更新结果
+     */
+    @ResponseBody
+    @PostMapping("/edit/userInfo")
+    public Result editUserInfo(@RequestBody UserInfo userInfo){
+        log.info("userInfo:"+userInfo);
+        return userService.updateUserInfo(userInfo);
     }
 
     /**

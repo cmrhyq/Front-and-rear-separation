@@ -15,8 +15,10 @@
  * @param data
  */
 function outputTips(data) {
-  if (data.status === 201){
+  if (data.msg.indexOf("成功") >= 0) {
     successTips(data.msg)
+  } else if (data.msg.indexOf("成功") >= 0) {
+    warnTips(data.msg)
   } else {
     failTips(data.msg)
   }

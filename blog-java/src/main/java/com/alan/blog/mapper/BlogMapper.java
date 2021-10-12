@@ -47,9 +47,17 @@ public interface BlogMapper {
     /**
      * 更新用户信息
      *
+     * @param userInfo 用户信息
+     * @return 受影响行数
+     */
+    int updateUserInfo(UserInfo userInfo);
+
+    /**
+     * 更新用户登录信息
+     *
      * @param userLogin-用户信息
      */
-    void updateUserInfo(UserLogin userLogin);
+    void updateUserLoginInfo(UserLogin userLogin);
 
     /**
      * 查询用户信息

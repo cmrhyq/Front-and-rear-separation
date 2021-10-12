@@ -18,7 +18,7 @@ import java.util.Optional;
  * @email cmrhyq@163.com
  */
 @Data
-public class Result<T> {
+public class Result {
     private String code;
     private List<?> data;
     private String msg;

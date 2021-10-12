@@ -85,7 +85,7 @@ public class UserServiceImpl implements UserService {
                 updateUserResult.setUserLastTime(userLastTime);
                 updateUserResult.setUserLastLoginIp(IPUtil.getIP(HttpContextUtil.getHttpServletRequest()));
                 updateUserResult.setUserId(queryLoginInfo.getUserId());
-                blogMapper.updateUserInfo(updateUserResult);
+                blogMapper.updateUserLoginInfo(updateUserResult);
                 // 将结果返回
                 returnResult.setCode(EnumErrorCode.ACC_FREEZE.getCode());
                 returnResult.setMsg(EnumErrorCode.ACC_FREEZE.getMessage());
@@ -107,7 +107,7 @@ public class UserServiceImpl implements UserService {
                     updateUserResult.setUserLastTime(userLastTime);
                     updateUserResult.setUserLastLoginIp(IPUtil.getIP(HttpContextUtil.getHttpServletRequest()));
                     updateUserResult.setUserId(queryLoginInfo.getUserId());
-                    blogMapper.updateUserInfo(updateUserResult);
+                    blogMapper.updateUserLoginInfo(updateUserResult);
                     // 生成token并返回结果和数据
                     Map<String, String> map = new HashMap<>();
                     List<Map<String, String>> list = new ArrayList<>();
@@ -136,6 +136,18 @@ public class UserServiceImpl implements UserService {
     @Override
     public List<Map<String, Object>>  controllerUser() {
         return blogMapper.queryUserLoginAll();
+    }
+
+    /**
+     * 更新用户信息
+     *
+     * @param userInfo  更新的信息
+     * @return 更新结果
+     */
+    @Override
+    public Result updateUserInfo(UserInfo userInfo) {
+        log.info("msg:"+blogMapper.updateUserInfo(userInfo));
+        return null;
     }
 
 }

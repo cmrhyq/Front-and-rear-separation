@@ -32,6 +32,10 @@ public class UserInfo {
      */
     private String userInfoSex;
     /**
+     * 年龄
+     */
+    private int userInfoAge;
+    /**
      * 证件号
      */
     private String userInfoIdNumber;
@@ -39,6 +43,10 @@ public class UserInfo {
      * 证件类型
      */
     private String userInfoIdType;
+    /**
+     * 邮箱
+     */
+    private String userInfoEmail;
     /**
      * 所在省市
      */

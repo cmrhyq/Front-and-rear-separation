@@ -22,7 +22,7 @@ spring:
     driver-class-name: com.mysql.cj.jdbc.Driver
     name: defaultDataSource
     password: alan0901
-    url: jdbc:mysql://182.92.65.196:3306/alandb?characterEncoding=utf-8&useSSl=false&allowPublicKeyRetrieval=true&serverTimezone=UTC
+    url: jdbc:mysql://182.92.65.196:3306/alandb?characterEncoding=utf-8&useSSl=false&allowPublicKeyRetrieval=true&serverTimezone=UTC&useAffectedRows=true
     username: alandb
   thymeleaf:
     cache: true

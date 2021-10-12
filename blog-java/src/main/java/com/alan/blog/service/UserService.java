@@ -1,6 +1,7 @@
 package com.alan.blog.service;
 
 import com.alan.blog.entity.SystemKey;
+import com.alan.blog.entity.UserInfo;
 import com.alan.blog.entity.UserLogin;
 import com.alan.blog.utils.Result;
 
@@ -43,7 +44,16 @@ public interface UserService {
 
     /**
      * 用户账号控制信息
-     * @return List<Map<String, String>>
+     *
+     * @return List<Map < String, String>>
      */
-    List<Map<String, Object>>  controllerUser();
+    List<Map<String, Object>> controllerUser();
+
+    /**
+     * 更新用户信息
+     *
+     * @param userInfo  更新的信息
+     * @return 更新结果
+     */
+    Result updateUserInfo(UserInfo userInfo);
 }
