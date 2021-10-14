@@ -17,10 +17,13 @@
 function outputTips(data) {
   if (data.msg.indexOf("成功") >= 0) {
     successTips(data.msg)
-  } else if (data.msg.indexOf("成功") >= 0) {
+    return true;
+  } else if (data.msg.indexOf("失败") >= 0) {
     warnTips(data.msg)
+    return false;
   } else {
     failTips(data.msg)
+    return false;
   }
 }
 

@@ -9,7 +9,7 @@ const store = new Vuex.Store({
     token: localStorage.getItem('token') ? localStorage.getItem('token') : '',
     nick: localStorage.getItem('nick') ? localStorage.getItem('nick') : '',
     sex: localStorage.getItem('sex') ? localStorage.getItem('sex') : '',
-    phone: localStorage.getItem('phone') ? localStorage.getItem('phone') : ''
+    phone: localStorage.getItem('phone') ? localStorage.getItem('phone') : '',
   },
   mutations: {
     // 修改token，并将token存入localStorage

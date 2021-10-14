@@ -3,20 +3,20 @@
     <el-card class="box-card" shadow="always">
       <div slot="header" class="clearfix">
         <el-icon class="el-icon-monitor"></el-icon>
-        <span>注册账号</span>
+        <span>{{ formTitle }}</span>
       </div>
       <el-form
-        :model="ruleForm"
+        :model="regForm"
         v-show="regBox"
         status-icon
-        :rules="rules"
-        ref="ruleForm"
+        :rules="regs"
+        ref="regForm"
         label-width="100px"
         class="demo-ruleForm">
         <el-form-item label="手机号" prop="phone">
           <el-input
             type="text"
-            v-model="ruleForm.phone"
+            v-model="regForm.phone"
             prefix-icon="el-icon-mobile-phone"
             autocomplete="off"
             clearable>
@@ -25,7 +25,7 @@
         <el-form-item label="密码" prop="pass">
           <el-input
             type="password"
-            v-model="ruleForm.pass"
+            v-model="regForm.pass"
             prefix-icon="el-icon-lock"
             autocomplete="off"
             show-password>
@@ -34,7 +34,7 @@
         <el-form-item label="确认密码" prop="checkPass">
           <el-input
             type="password"
-            v-model="ruleForm.checkPass"
+            v-model="regForm.checkPass"
             prefix-icon="el-icon-lock"
             autocomplete="off"
             @keyup.enter.native="register"
@@ -55,35 +55,68 @@
         v-show="infoBox"
         status-icon
         label-width="100px">
-        <el-form-item label="手机号" prop="phone">
+        <el-form-item label="手机号:" prop="phone">
           <el-input
             type="text"
+            v-model="regInfoForm.phone"
             prefix-icon="el-icon-mobile-phone"
+            autocomplete="off"
+            disabled
+            clearable>
+          </el-input>
+        </el-form-item>
+        <el-form-item label="昵称:" prop="nick">
+          <el-input
+            type="text"
+            v-model="regInfoForm.nick"
+            prefix-icon="el-icon-notebook-2"
             autocomplete="off"
             clearable>
           </el-input>
         </el-form-item>
-        <el-form-item label="昵称" prop="pass">
+        <el-form-item label="姓名:" prop="name">
           <el-input
             type="text"
-            prefix-icon="el-icon-lock"
+            v-model="regInfoForm.name"
+            prefix-icon="el-icon-user"
             autocomplete="off"
-            show-password>
+            clearable>
           </el-input>
         </el-form-item>
-        <el-form-item label="姓名" prop="checkPass">
+        <el-form-item label="性别:">
+          <el-radio-group v-model="regInfoForm.sex">
+            <el-radio label="男" border></el-radio>
+            <el-radio label="女" border></el-radio>
+          </el-radio-group>
+        </el-form-item>
+        <el-form-item label="年龄:">
           <el-input
             type="text"
-            prefix-icon="el-icon-lock"
+            v-model="regInfoForm.age"
+            prefix-icon="el-icon-toilet-paper"
             autocomplete="off"
-            @keyup.enter.native="register"
-            show-password>
+            clearable>
           </el-input>
         </el-form-item>
-        <el-form-item>
-          <el-button type="primary" @click="saveInfo">保存</el-button>
+        <el-form-item label="证件类型:">
+          <el-select placeholder="请选择证件类型" v-model="regInfoForm.idType" value="">
+            <el-option label="身份证" value="身份证"></el-option>
+            <el-option label="士官证" value="士官证"></el-option>
+          </el-select>
+        </el-form-item>
+        <el-form-item label="证件号:">
+          <el-input
+            type="text"
+            v-model="regInfoForm.idNumber"
+            prefix-icon="el-icon-postcard"
+            autocomplete="off"
+            clearable>
+          </el-input>
         </el-form-item>
       </el-form>
+      <el-form-item>
+        <el-button type="primary" @click="saveInfo">保存</el-button>
+      </el-form-item>
 
       <el-divider content-position="left"></el-divider>
       <el-steps
@@ -114,7 +147,7 @@ export default {
       if (value === '') {
         callback(new Error('请输入您的手机号'));
       } else {
-        if (this.ruleForm.phone !== '') {
+        if (this.regForm.phone !== '') {
           var phoneVerify = /^(13[0-9]|14[01456879]|15[0-35-9]|16[2567]|17[0-8]|18[0-9]|19[0-35-9])\d{8}$/
           if (!phoneVerify.test(value)) {
             callback(new Error('手机号码填写有误'));
@@ -130,8 +163,8 @@ export default {
         if (value.length < 6) {
           callback(new Error('密码长度小于六位'));
         } else {
-          if (this.ruleForm.checkPass !== '') {
-            this.$refs.ruleForm.validateField('checkPass');
+          if (this.regForm.checkPass !== '') {
+            this.$refs.regForm.validateField('checkPass');
           }
         }
         callback();
@@ -144,7 +177,7 @@ export default {
         if (value.length < 6) {
           callback(new Error('密码长度小于六位'));
         } else {
-          if (value !== this.ruleForm.pass) {
+          if (value !== this.regForm.pass) {
             callback(new Error('两次输入的密码不一致'))
           } else {
             callback();
@@ -153,18 +186,28 @@ export default {
       }
     };
     return {
+      formTitle: '注册账号',
       proStatus: '',
       status: 'success',
       regBox: true,
       infoBox: false,
       regResult: false,
       active: 0,
-      ruleForm: {
+      regInfoForm: {
+        phone: '',
+        nick: '',
+        name: '',
+        sex: '',
+        age: '',
+        idType: '身份证',
+        idNumber: '',
+      },
+      regForm: {
         phone: '',
         pass: '',
         checkPass: '',
       },
-      rules: {
+      regs: {
         phone: [
           {validator: validatePhone, trigger: 'blur'}
         ],
@@ -179,23 +222,25 @@ export default {
   },
   methods: {
     resetForm(formName) {
-      this.$refs['ruleForm'].resetFields();
+      this.$refs['regForm'].resetFields();
     },
     register() {
-      this.$refs['ruleForm'].validate((valid) => {
+      this.$refs['regForm'].validate((valid) => {
         if (valid) {
           var url = 'http://localhost:7778'
-          axios.post(url + '/user/register/').then((res) => {
-            outputTips(res.data)
-            if (res.data.status === 202) {
+          var data = {userPhone: this.regForm.phone, userPassword: md5(this.regForm.pass)}
+          axios.post(url + '/user/register/', data).then((res) => {
+            if (outputTips(res.data)) {
               if (this.active++ > 2) {
                 this.active = 0
               }
               this.regBox === true ? this.regBox = false : this.regBox = true;
               this.infoBox === true ? this.infoBox = false : this.infoBox = true;
+              this.regInfoForm.phone = this.regForm.phone;
+              this.formTitle = '填写个人资料';
             }
           }).catch(function (error) {
-            console.log(error)
+            console.log(error);
           })
         } else {
           console.log('error submit!!');
@@ -204,9 +249,9 @@ export default {
       });
     },
     saveInfo() {
-      this.proStatus = 'success'
+      this.proStatus = 'success';
       if (this.active++ > 2) {
-        this.active = 0
+        this.active = 0;
       }
       this.regResult === true ? this.regResult = false : this.regResult = true;
       this.infoBox === true ? this.infoBox = false : this.infoBox = true;

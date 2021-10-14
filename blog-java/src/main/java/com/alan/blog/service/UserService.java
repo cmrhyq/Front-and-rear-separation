@@ -56,4 +56,14 @@ public interface UserService {
      * @return 更新结果
      */
     Result updateUserInfo(UserInfo userInfo);
+
+    /**
+     * 注册
+     * @param userPhone 手机号
+     * @param userPassword 密码
+     * @param request
+     * @return 注册结果
+     * @throws Exception
+     */
+    Result insertUserLogin(String userPhone,String userPassword, HttpServletRequest request) throws Exception;
 }

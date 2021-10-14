@@ -10,10 +10,13 @@ import com.alan.blog.service.SystemService;
 import com.alan.blog.service.UserService;
 import com.alan.blog.utils.*;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.ibatis.jdbc.SQL;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.servlet.http.HttpServletRequest;
 import java.nio.charset.StandardCharsets;
+import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -134,20 +137,78 @@ public class UserServiceImpl implements UserService {
      * @return List<Map < String, String>>
      */
     @Override
-    public List<Map<String, Object>>  controllerUser() {
+    public List<Map<String, Object>> controllerUser() {
         return blogMapper.queryUserLoginAll();
     }
 
     /**
      * 更新用户信息
      *
-     * @param userInfo  更新的信息
+     * @param userInfo 更新的信息
      * @return 更新结果
      */
     @Override
     public Result updateUserInfo(UserInfo userInfo) {
-        log.info("msg:"+blogMapper.updateUserInfo(userInfo));
+        int affectTotalRow = blogMapper.updateUserInfo(userInfo);
+        if (affectTotalRow > 0) {
+
+        }
         return null;
+    }
+
+    /**
+     * 注册
+     *
+     * @param userPhone    手机号
+     * @param userPassword 密码
+     * @return 注册结果
+     */
+    @Override
+    public Result insertUserLogin(String userPhone, String userPassword, HttpServletRequest request) throws Exception {
+        // 返回的结果
+        Result returnResult = new Result();
+        // 根据手机号查询数据
+        UserLogin queryLoginInfo = blogMapper.login(userPhone);
+        // 查询系统公钥
+        SystemKey systemKey = systemService.querySystemKey();
+        // 判断这个账号是否注册
+        if (queryLoginInfo == null) {
+            // 未注册
+            Map<String, Object> paramsMap = new HashMap<>();
+            // 加密密码
+            byte[] passEncrypt = EccUtils.encrypt(userPassword.getBytes(StandardCharsets.UTF_8), systemKey.getPublicKey());
+            paramsMap.put("userPhone", userPhone);
+            paramsMap.put("userPassword", BASE64Encoder.encodeBuffer(passEncrypt));
+            paramsMap.put("userRegTime", new Timestamp(System.currentTimeMillis()));
+            paramsMap.put("userStatus", 0);
+            paramsMap.put("userSessionId", request.getSession().getId());
+            try {
+                Map<String, String> map = new HashMap<>();
+                List<Map<String, String>> list = new ArrayList<>();
+                // 受影响行数
+                int affectTotalRow = blogMapper.insertUserLogin(paramsMap);
+                log.info("受影响行数：" + affectTotalRow);
+
+                map.put("userPhone", userPhone);
+                list.add(map);
+                
+                returnResult.setCode(EnumErrorCode.REG_SUCCESS.getCode());
+                returnResult.setMsg(EnumErrorCode.REG_SUCCESS.getMessage());
+                returnResult.setData(list);
+                returnResult.setStatus(EnumErrorCode.REG_SUCCESS.getStatus());
+            } catch (Exception e) {
+                e.printStackTrace();
+                returnResult.setCode(EnumErrorCode.ACC_REG_FAIL.getCode());
+                returnResult.setMsg(EnumErrorCode.ACC_REG_FAIL.getMessage() + ":" + e.getMessage());
+                returnResult.setStatus(EnumErrorCode.ACC_REG_FAIL.getStatus());
+            }
+        } else {
+            // 已注册
+            returnResult.setCode(EnumErrorCode.ACC_HAS_BEEN_REG.getCode());
+            returnResult.setMsg(EnumErrorCode.ACC_HAS_BEEN_REG.getMessage());
+            returnResult.setStatus(EnumErrorCode.ACC_HAS_BEEN_REG.getStatus());
+        }
+        return returnResult;
     }
 
 }

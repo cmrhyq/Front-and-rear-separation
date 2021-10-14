@@ -14,27 +14,31 @@ public enum EnumErrorCode implements ErrorMessages {
     /**
      * 账号未注册 - user account no reg
      */
-    ACC_NO_REG("00001", "账号未注册", 1),
+    ACC_NO_REG("000001", "账号未注册", 1),
+    /**
+     * 账号已经注册 - account has been register
+     */
+    ACC_HAS_BEEN_REG("000002","注册失败，账号已注册",2),
     /**
      * 账号密码错误 - user account password error
      */
-    ACC_PWD_ERR("000002", "账号密码错误", 2),
+    ACC_PWD_ERR("000003", "账号密码错误", 3),
     /**
      * 账号冻结 -user account freeze
      */
-    ACC_FREEZE("000003", "账号冻结", 3),
-    /**
-     * 帐号状态异常 - user account status abnormal
-     */
-    ACC_STATUS_ABNORMAL("0000004", "帐号状态异常", 4),
+    ACC_FREEZE("000004", "账号冻结", 4),
     /**
      * token认证失败，未通过拦截器
      */
     AUTHEN_FAIL("000005", "认证失败,请先登录", 5),
     /**
-     * 注册失败，user account register fail
+     * 帐号状态异常 - user account status abnormal
      */
-    REG_FAIL("000006","注册失败",6),
+    ACC_STATUS_ABNORMAL("000006", "帐号状态异常", 6),
+    /**
+     * 账号注册失败 - account register fail
+     */
+    ACC_REG_FAIL("000007","注册失败",7),
 
     /**
      * 请求成功，success

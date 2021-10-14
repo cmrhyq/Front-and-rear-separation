@@ -55,8 +55,8 @@ public class UserController {
     /**
      * 登录
      *
-     * @param user
-     * @return
+     * @param user 登录信息
+     * @return 登录结果和信息
      * @throws JsonProcessingException
      */
     @ResponseBody
@@ -65,14 +65,18 @@ public class UserController {
         return userService.login(user.getUserPhone(), user.getUserPassword());
     }
 
+    /**
+     * 注册
+     *
+     * @param user    登录信息
+     * @param request
+     * @return 注册结果
+     * @throws Exception
+     */
     @ResponseBody
     @PostMapping("/register")
-    public Result register(){
-        Result returnResult = new Result();
-        returnResult.setCode(EnumErrorCode.REG_SUCCESS.getCode());
-        returnResult.setMsg(EnumErrorCode.REG_SUCCESS.getMessage());
-        returnResult.setStatus(EnumErrorCode.REG_SUCCESS.getStatus());
-        return returnResult;
+    public Result register(@RequestBody UserLogin user, HttpServletRequest request) throws Exception {
+        return userService.insertUserLogin(user.getUserPhone(), user.getUserPassword(), request);
     }
 
     /**
@@ -94,8 +98,8 @@ public class UserController {
      */
     @ResponseBody
     @PostMapping("/edit/userInfo")
-    public Result editUserInfo(@RequestBody UserInfo userInfo){
-        log.info("userInfo:"+userInfo);
+    public Result editUserInfo(@RequestBody UserInfo userInfo) {
+        log.info("userInfo:" + userInfo);
         return userService.updateUserInfo(userInfo);
     }
 

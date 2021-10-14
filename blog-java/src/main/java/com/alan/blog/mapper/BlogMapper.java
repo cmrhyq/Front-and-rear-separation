@@ -22,6 +22,20 @@ import java.util.Map;
 public interface BlogMapper {
 
     /**
+     * 新增登录表信息
+     * @param map 登录信息
+     * @return 受影响行数
+     */
+    int insertUserLogin(Map<String,Object> map);
+
+    /**
+     * 新增账号信息表信息
+     * @param map 账号信息表信息
+     * @return 受影响行数
+     */
+    int insertUserInfo(Map<String, Object> map);
+
+    /**
      * 根据手机号查询用户的所有信息
      *
      * @param userPhone 手机号

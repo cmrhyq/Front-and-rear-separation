@@ -156,10 +156,14 @@ export default {
     },
     /**
      * 退出登录
-     * 删除localStorage中的token
+     * 删除localStorage中的信息
      */
     logout() {
       localStorage.removeItem('token');
+      localStorage.removeItem("nick");
+      localStorage.removeItem("sex");
+      localStorage.removeItem("phone");
+      localStorage.removeItem("regPhone");
       this.$router.push('/');
     },
     /**

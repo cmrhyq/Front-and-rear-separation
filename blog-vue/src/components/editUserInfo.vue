@@ -36,7 +36,7 @@
             </el-tag>
           </el-form-item>
           <el-form-item label="证件类型:" style="float: right">
-            <el-select v-if="infoForm.idType === ''" placeholder="请选择证件类型">
+            <el-select v-if="infoForm.idType === ''" placeholder="请选择证件类型" value="">
               <el-option label="身份证" value="身份证"></el-option>
               <el-option label="士官证" value="士官证"></el-option>
             </el-select>

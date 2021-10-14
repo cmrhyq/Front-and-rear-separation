@@ -3,6 +3,48 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.alan.blog.mapper.BlogMapper">
 
+    <insert id="insertUserLogin" parameterType="hashmap" keyProperty="user_id" useGeneratedKeys="true">
+        INSERT INTO user_login
+        (user_id,
+         user_phone,
+         user_password,
+         user_reg_time,
+         user_status,
+         user_session_id)
+        VALUES (null,
+                #{userPhone},
+                #{userPassword},
+                #{userRegTime},
+                #{userStatusss},
+                #{userSessionId})
+    </insert>
+
+    <insert id="insertUserInfo" parameterType="hashmap" keyProperty="" useGeneratedKeys="true">
+        INSERT INTO user_info
+        (user_info_id,
+         user_info_nick,
+         user_info_name,
+         user_info_sex,
+         user_info_age,
+         user_info_id_number,
+         user_info_id_type,
+         user_info_email,
+         user_info_province,
+         user_info_address,
+         user_login_id)
+        VALUES (null,
+                #{userInfoNick},
+                #{userInfoName},
+                #{userInfoSex},
+                #{userInfoAge},
+                #{userInfoIdNumber},
+                #{userInfoIdType},
+                #{userInfoEmail},
+                #{userInfoProvince},
+                #{userInfoAddress},
+                #{userLoginId})
+    </insert>
+
     <select id="queryInfoAsUserPhone" resultType="hashmap">
         SELECT ul.user_id             as userId,
                ul.user_phone          as userPhone,
