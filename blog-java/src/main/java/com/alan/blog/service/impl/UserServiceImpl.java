@@ -149,11 +149,19 @@ public class UserServiceImpl implements UserService {
      */
     @Override
     public Result updateUserInfo(UserInfo userInfo) {
+        // 返回的结果
+        Result returnResult = new Result();
         int affectTotalRow = blogMapper.updateUserInfo(userInfo);
         if (affectTotalRow > 0) {
-
+            returnResult.setCode(EnumErrorCode.SUCCESS.getCode());
+            returnResult.setMsg("更新成功");
+            returnResult.setStatus(EnumErrorCode.SUCCESS.getStatus());
+        } else {
+            returnResult.setCode(EnumErrorCode.FAIL.getCode());
+            returnResult.setMsg("更新失败");
+            returnResult.setStatus(EnumErrorCode.FAIL.getStatus());
         }
-        return null;
+        return returnResult;
     }
 
     /**

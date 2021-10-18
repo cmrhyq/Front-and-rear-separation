@@ -52,6 +52,9 @@
       </el-form>
 
       <el-form
+        :model="regInfoForm"
+        :rules="regInfos"
+        ref="regInfoForm"
         v-show="infoBox"
         status-icon
         label-width="100px">
@@ -113,17 +116,26 @@
             clearable>
           </el-input>
         </el-form-item>
+        <el-form-item label="Email:">
+          <el-input
+            type="text"
+            v-model="regInfoForm.email"
+            prefix-icon="el-icon-message"
+            autocomplete="off"
+            clearable>
+          </el-input>
+        </el-form-item>
+        <el-form-item>
+          <el-button type="primary" @click="saveInfo">保存</el-button>
+        </el-form-item>
       </el-form>
-      <el-form-item>
-        <el-button type="primary" @click="saveInfo">保存</el-button>
-      </el-form-item>
 
       <el-divider content-position="left"></el-divider>
       <el-steps
         :active="active"
-        align-center
         :process-status="proStatus"
         :finish-status="status"
+        align-center
         class="state-box">
         <el-step title="注册账号"></el-step>
         <el-step title="填写资料"></el-step>
@@ -131,7 +143,6 @@
       </el-steps>
     </el-card>
   </div>
-
 </template>
 
 <script>
@@ -143,6 +154,18 @@ import md5 from "js-md5";
 export default {
   name: "register",
   data() {
+    var validateEmail = (rule, value, callback) => {
+      if (value === '') {
+        callback(new Error("请输入您的email地址"));
+      } else {
+        var emailVerify = /^\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/;
+        if (!emailVerify.test(value)) {
+          callback(new Error("Email格式错误"))
+        }
+        callback()
+      }
+    }
+
     var validatePhone = (rule, value, callback) => {
       if (value === '') {
         callback(new Error('请输入您的手机号'));
@@ -201,6 +224,12 @@ export default {
         age: '',
         idType: '身份证',
         idNumber: '',
+        email: ''
+      },
+      regInfos: {
+        email: [
+          {validator: validateEmail, trigger: 'blur'}
+        ]
       },
       regForm: {
         phone: '',
@@ -249,12 +278,14 @@ export default {
       });
     },
     saveInfo() {
-      this.proStatus = 'success';
-      if (this.active++ > 2) {
-        this.active = 0;
-      }
-      this.regResult === true ? this.regResult = false : this.regResult = true;
-      this.infoBox === true ? this.infoBox = false : this.infoBox = true;
+      this.$refs['regInfoForm'].validate((valid) => {
+        this.proStatus = 'success';
+        if (this.active++ > 2) {
+          this.active = 0;
+        }
+        this.regResult === true ? this.regResult = false : this.regResult = true;
+        this.infoBox === true ? this.infoBox = false : this.infoBox = true;
+      });
     }
   },
   beforeCreate() {

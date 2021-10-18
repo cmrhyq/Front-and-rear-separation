@@ -154,9 +154,8 @@ export default {
       }
       console.log(userinfo)
       axios.post(url + '/user/edit/userInfo/',userinfo).then((res) => {
-        console.log(res);
+        outputTips(res.data)
         if (res.data.code === 5) {
-          outputTips(res.data)
           // 页面跳转
           this.$router.push({path: '/'});
         }

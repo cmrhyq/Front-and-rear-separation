@@ -39,6 +39,11 @@ public enum EnumErrorCode implements ErrorMessages {
      * 账号注册失败 - account register fail
      */
     ACC_REG_FAIL("000007","注册失败",7),
+    /**
+     * 账号个人信息未填写 - user account information not filled
+     */
+    USER_INFO_NOT_FILL("000008","失败，账号个人信息未填写",8),
+    FAIL("000009","失败",9),
 
     /**
      * 请求成功，success
