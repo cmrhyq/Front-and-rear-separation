@@ -52,18 +52,28 @@ public interface UserService {
     /**
      * 更新用户信息
      *
-     * @param userInfo  更新的信息
+     * @param userInfo 更新的信息
      * @return 更新结果
      */
     Result updateUserInfo(UserInfo userInfo);
 
     /**
      * 注册
-     * @param userPhone 手机号
+     *
+     * @param userPhone    手机号
      * @param userPassword 密码
      * @param request
      * @return 注册结果
      * @throws Exception
      */
-    Result insertUserLogin(String userPhone,String userPassword, HttpServletRequest request) throws Exception;
+    Result insertUserLogin(String userPhone, String userPassword, HttpServletRequest request) throws Exception;
+
+    /**
+     * 注册第二部个人信息填写
+     *
+     * @param userInfo 用户信息
+     * @param userLogin 手机号
+     * @return 结果
+     */
+    Result insertUserInfo(UserInfo userInfo,String userPhone);
 }

@@ -9,6 +9,7 @@ import com.alan.blog.mapper.BlogMapper;
 import com.alan.blog.service.SystemService;
 import com.alan.blog.service.UserService;
 import com.alan.blog.utils.*;
+import com.alibaba.fastjson.JSONObject;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.ibatis.jdbc.SQL;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,6 +40,9 @@ import java.util.Map;
 public class UserServiceImpl implements UserService {
 
 //    request.getSession().getId()
+
+//    JSONObject json = new JSONObject();
+//    json.put("abc",1);
 
     @Autowired
     private BlogMapper blogMapper;
@@ -215,6 +219,48 @@ public class UserServiceImpl implements UserService {
             returnResult.setCode(EnumErrorCode.ACC_HAS_BEEN_REG.getCode());
             returnResult.setMsg(EnumErrorCode.ACC_HAS_BEEN_REG.getMessage());
             returnResult.setStatus(EnumErrorCode.ACC_HAS_BEEN_REG.getStatus());
+        }
+        return returnResult;
+    }
+
+    /**
+     * 注册第二部个人信息填写
+     *
+     * @param userInfo 用户信息
+     * @return 结果
+     */
+    @Override
+    public Result insertUserInfo(UserInfo userInfo, String userPhone) {
+        // 返回的结果
+        Result returnResult = new Result();
+        Map<String, Object> paramsMap = new HashMap<>();
+        try {
+            paramsMap.put("userInfoNick", userInfo.getUserInfoNick());
+            paramsMap.put("userInfoName", userInfo.getUserInfoName());
+            paramsMap.put("userInfoSex", userInfo.getUserInfoSex());
+            paramsMap.put("userInfoAge", userInfo.getUserInfoAge());
+            paramsMap.put("userInfoIdNumber", userInfo.getUserInfoIdNumber());
+            paramsMap.put("userInfoIdType", userInfo.getUserInfoIdType());
+            paramsMap.put("userInfoEmail", userInfo.getUserInfoEmail());
+            paramsMap.put("userInfoProvince", userInfo.getUserInfoProvince());
+            paramsMap.put("userInfoAddress", userInfo.getUserInfoAddress());
+            paramsMap.put("userLoginId", blogMapper.login(userPhone).getUserId());
+            Map<String, String> returnMap = new HashMap<>();
+            List<Map<String, String>> list = new ArrayList<>();
+            // 受影响行数
+            int affectTotalRow = blogMapper.insertUserInfo(paramsMap);
+            log.info("受影响行数：" + affectTotalRow);
+            returnMap.put("userNick", userInfo.getUserInfoNick());
+            list.add(returnMap);
+            returnResult.setCode(EnumErrorCode.SUCCESS.getCode());
+            returnResult.setMsg(EnumErrorCode.SUCCESS.getMessage());
+            returnResult.setData(list);
+            returnResult.setStatus(EnumErrorCode.SUCCESS.getStatus());
+        } catch (Exception e) {
+            e.printStackTrace();
+            returnResult.setCode(EnumErrorCode.FAIL.getCode());
+            returnResult.setMsg(EnumErrorCode.FAIL.getMessage() + ":" + e.getMessage());
+            returnResult.setStatus(EnumErrorCode.FAIL.getStatus());
         }
         return returnResult;
     }

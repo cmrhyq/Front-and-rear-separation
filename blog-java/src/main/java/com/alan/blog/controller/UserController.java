@@ -8,6 +8,7 @@ import com.alan.blog.service.UserService;
 import com.alan.blog.utils.EnumErrorCode;
 import com.alan.blog.utils.Result;
 import com.alan.blog.utils.TokenUtil;
+import com.alibaba.fastjson.JSONObject;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -77,6 +78,19 @@ public class UserController {
     @PostMapping("/register")
     public Result register(@RequestBody UserLogin user, HttpServletRequest request) throws Exception {
         return userService.insertUserLogin(user.getUserPhone(), user.getUserPassword(), request);
+    }
+
+    /**
+     * 个人信息填写
+     *
+     * @param userInfo 个人信息
+     * @param userLogin 手机号的信息
+     * @return 增加结果
+     */
+    @ResponseBody
+    @PostMapping("/addUserInfo")
+    public Result addUserInfo(@RequestBody UserInfo userInfo, @RequestBody UserLogin userLogin){
+        return userService.insertUserInfo(userInfo, userLogin.getUserPhone());
     }
 
     /**

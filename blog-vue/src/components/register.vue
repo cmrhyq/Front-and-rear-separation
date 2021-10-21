@@ -74,6 +74,7 @@
             v-model="regInfoForm.nick"
             prefix-icon="el-icon-notebook-2"
             autocomplete="off"
+            placeholder="请输入一个心仪的昵称"
             clearable>
           </el-input>
         </el-form-item>
@@ -83,6 +84,7 @@
             v-model="regInfoForm.name"
             prefix-icon="el-icon-user"
             autocomplete="off"
+            placeholder="请输入您的姓名"
             clearable>
           </el-input>
         </el-form-item>
@@ -98,6 +100,7 @@
             v-model="regInfoForm.age"
             prefix-icon="el-icon-toilet-paper"
             autocomplete="off"
+            placeholder="请输入输入您的年龄"
             clearable>
           </el-input>
         </el-form-item>
@@ -113,6 +116,7 @@
             v-model="regInfoForm.idNumber"
             prefix-icon="el-icon-postcard"
             autocomplete="off"
+            placeholder="请输入您相应证件的证件号"
             clearable>
           </el-input>
         </el-form-item>
@@ -122,8 +126,27 @@
             v-model="regInfoForm.email"
             prefix-icon="el-icon-message"
             autocomplete="off"
+            placeholder="请输入您的电子邮箱"
             clearable>
           </el-input>
+        </el-form-item>
+        <el-form-item label="省市区:">
+          <el-cascader
+            v-model="regInfoForm.address"
+            :options="city"
+            filterable
+            clearable>
+            <template slot-scope="{ node, data }">
+              <span>{{ data.label }}</span>
+              <span v-if="!node.isLeaf">({{ data.children.length }})</span>
+            </template>
+          </el-cascader>
+        </el-form-item>
+        <el-form-item label="详细地址:">
+          <el-input
+            v-model="regInfoForm.addDetail"
+            placeholder="请输入您的详细地址"
+            clearable></el-input>
         </el-form-item>
         <el-form-item>
           <el-button type="primary" @click="saveInfo">保存</el-button>
@@ -146,10 +169,11 @@
 </template>
 
 <script>
-import 'element-ui/lib/theme-chalk/base.css';
-import axios from "axios";
-import {failTips, successTips, warnTips, outputTips} from "../assets/js/tipsInfo";
 import md5 from "js-md5";
+import axios from "axios";
+import 'element-ui/lib/theme-chalk/base.css';
+import {regionData, CodeToText, TextToCode} from 'element-china-area-data'
+import {failTips, successTips, warnTips, outputTips} from "../assets/js/tipsInfo";
 
 export default {
   name: "register",
@@ -209,6 +233,7 @@ export default {
       }
     };
     return {
+      city: regionData,
       formTitle: '注册账号',
       proStatus: '',
       status: 'success',
@@ -224,7 +249,9 @@ export default {
         age: '',
         idType: '身份证',
         idNumber: '',
-        email: ''
+        email: '',
+        address: '',
+        addDetail: '',
       },
       regInfos: {
         email: [
@@ -314,7 +341,7 @@ body {
   width: 480px;
   margin: 0 auto;
   position: relative;
-  top: 200px;
+  top: 100px;
   left: 0;
   right: 0;
   bottom: 0;
