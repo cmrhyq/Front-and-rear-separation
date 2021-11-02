@@ -36,18 +36,18 @@ spring:
     mode: HTML5
     prefix: classpath:/templates/
     suffix: .html
-logging:
-  pattern:
-    #日志格式
-    console: "%clr(%d{yyyy-MM-dd HH:mm:ss.SSS}){faint} %clr(%5p) - %clr([%t]){faint} %X{log_id} %clr(%logger{39}){cyan} %clr(:){faint} %m%n%wEx%l"
-    file: "%d{yyyy-MM-dd HH:mm:ss.SSS} %5p - [%t] %X{log_id} %logger{39} : %m%n%wEx"
-  file:
-    ax
-    path: src/main/resources/log
-    name: "%d{yyyy-MM-dd HH:mm:ss.SSS}-log.txt"
-    max-history: 7
-    max-size: 20MB
-    total-size-cap: 1GB
-    clean-history-on-start: false
-  level:
-    root: info
+#logging:
+#  pattern:
+#    #日志格式
+#    console: "%clr(%d{yyyy-MM-dd HH:mm:ss.SSS}){faint} %clr(%5p) - %clr([%t]){faint} %X{log_id} %clr(%logger{39}){cyan} %clr(:){faint} %m%n%wEx%l"
+#    file: "%d{yyyy-MM-dd HH:mm:ss.SSS} %5p - [%t] %X{log_id} %logger{39} : %m%n%wEx"
+#  file:
+#    ax
+#    path: src/main/resources/log
+#    name: "%d{yyyy-MM-dd HH:mm:ss.SSS}-log.txt"
+#    max-history: 7
+#    max-size: 20MB
+#    total-size-cap: 1GB
+#    clean-history-on-start: false
+#  level:
+#    root: info

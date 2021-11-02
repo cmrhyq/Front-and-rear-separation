@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.io.IOException;
 import java.security.NoSuchAlgorithmException;
 import java.security.NoSuchProviderException;
 
@@ -33,5 +34,10 @@ public class SystemController {
     @PostMapping("/queryKey")
     public SystemKey queryKey(){
         return systemService.querySystemKey();
+    }
+
+    @PostMapping("/updateKey")
+    public void updateKey() throws NoSuchAlgorithmException, IOException, NoSuchProviderException {
+        systemService.updateSystemKey();
     }
 }

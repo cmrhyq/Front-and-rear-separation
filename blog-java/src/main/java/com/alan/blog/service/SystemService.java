@@ -2,6 +2,7 @@ package com.alan.blog.service;
 
 import com.alan.blog.entity.SystemKey;
 
+import java.io.IOException;
 import java.security.NoSuchAlgorithmException;
 import java.security.NoSuchProviderException;
 
@@ -24,7 +25,7 @@ public interface SystemService {
      * @throws NoSuchAlgorithmException
      * @throws NoSuchProviderException
      */
-    void updateSystemKey() throws NoSuchAlgorithmException, NoSuchProviderException;
+    void updateSystemKey() throws NoSuchAlgorithmException, NoSuchProviderException, IOException;
 
     /**
      * 查询系统密钥对

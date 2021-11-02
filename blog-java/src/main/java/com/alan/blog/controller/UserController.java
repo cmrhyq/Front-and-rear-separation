@@ -1,14 +1,11 @@
 package com.alan.blog.controller;
 
-import com.alan.blog.entity.SystemKey;
 import com.alan.blog.entity.UserInfo;
 import com.alan.blog.entity.UserLogin;
-import com.alan.blog.service.SystemService;
 import com.alan.blog.service.UserService;
 import com.alan.blog.utils.EnumErrorCode;
 import com.alan.blog.utils.Result;
 import com.alan.blog.utils.TokenUtil;
-import com.alibaba.fastjson.JSONObject;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,8 +14,6 @@ import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.security.NoSuchAlgorithmException;
-import java.security.NoSuchProviderException;
 import java.util.List;
 import java.util.Map;
 

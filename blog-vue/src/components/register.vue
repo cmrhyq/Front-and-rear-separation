@@ -306,12 +306,14 @@ export default {
     },
     saveInfo() {
       this.$refs['regInfoForm'].validate((valid) => {
-        this.proStatus = 'success';
-        if (this.active++ > 2) {
-          this.active = 0;
-        }
-        this.regResult === true ? this.regResult = false : this.regResult = true;
-        this.infoBox === true ? this.infoBox = false : this.infoBox = true;
+        var url = 'http://localhost:7778'
+        var userInfo = {}
+        // this.proStatus = 'success';
+        // if (this.active++ > 2) {
+        //   this.active = 0;
+        // }
+        // this.regResult === true ? this.regResult = false : this.regResult = true;
+        // this.infoBox === true ? this.infoBox = false : this.infoBox = true;
       });
     }
   },

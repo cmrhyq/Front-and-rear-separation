@@ -224,7 +224,7 @@ public class UserServiceImpl implements UserService {
     }
 
     /**
-     * 注册第二部个人信息填写
+     * 注册第二步个人信息填写
      *
      * @param userInfo 用户信息
      * @return 结果

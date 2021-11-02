@@ -4,6 +4,9 @@
     <el-button type="primary" round @click="tokenCheck">
       token校验
     </el-button>
+    <el-button type="primary" round @click="updateSystemKey">
+      更新系统密钥
+    </el-button>
   </div>
 </template>
 
@@ -28,6 +31,14 @@ export default {
           // 页面跳转
           this.$router.push({path: '/'});
         }
+      }).catch(function (error) {
+        console.log(error)
+      })
+    },
+    updateSystemKey(){
+      var url = 'http://localhost:7778'
+      axios.post(url + '/system/updateKey/').then((res) => {
+        console.log(res)
       }).catch(function (error) {
         console.log(error)
       })

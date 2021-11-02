@@ -18,7 +18,6 @@ public enum ECCEnum {
     PRIVATE_KEY("PRIVATE_KEY");
 
 
-
     private String value;
 
     ECCEnum(String value) {
