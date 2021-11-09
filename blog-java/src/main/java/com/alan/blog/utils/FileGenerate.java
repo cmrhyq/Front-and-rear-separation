@@ -35,7 +35,7 @@ public class FileGenerate {
      */
     public static boolean createFile(String fileName, String fileContent) throws IOException {
         boolean bool = false;
-        if (fileName!=null&&fileContent!=null){
+        if (fileName != null && fileContent != null) {
             File file = new File("");
             // 获取项目的路径并拼接
             PATH = file.getCanonicalPath() + File.separator + "src" + File.separator + "main" + File.separator + "resources" + File.separator + "file" + File.separator;
@@ -68,8 +68,8 @@ public class FileGenerate {
      */
     public static boolean writeFileContent(String filePath, String newStr) throws IOException {
         boolean bool = false;
-        if (!filePath.isEmpty()&&!newStr.isEmpty()){
-            // 新的写入，换行
+        if (!filePath.isEmpty() && !newStr.isEmpty()) {
+            // 新地写入，换行
             String fileIn = newStr + "\r\n";
             String temp = "";
 
@@ -100,7 +100,6 @@ public class FileGenerate {
             } catch (Exception e) {
                 e.printStackTrace();
             } finally {
-                //不要忘记关闭
                 if (pw != null) {
                     pw.close();
                 }
@@ -151,7 +150,16 @@ public class FileGenerate {
     }
 
     public static void main(String[] args) throws IOException {
-        log.info("生成结果:" + createFile("SystemKey", "s"));
+//        log.info("生成结果:" + createFile("SystemKey", "s"));
 //        log.info("删除结果:"+delFile("SystemKey"));
+        int b[][] = {{1}, {2, 2}, {2, 2, 2}};
+        int sum = 0;
+
+        for (int i = 0; i < b.length; i++) {
+            for (int j = 0; j < b[i].length; j++) {
+                sum += b[i][j];
+            }
+        }
+        System.out.println("sum = " + sum);
     }
 }

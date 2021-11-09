@@ -47,19 +47,19 @@ public class SystemServiceImpl implements SystemService {
      * 更新公钥的方法
      *
      * @throws NoSuchAlgorithmException -
-     * @throws NoSuchProviderException -
+     * @throws NoSuchProviderException  -
      */
     @Override
     public void updateSystemKey() throws NoSuchAlgorithmException, NoSuchProviderException, IOException {
         Map<String, String> map = GenerateKey.getGenerateKey();
         String publicKey = map.get(ECCEnum.PUBLIC_KEY.value());
-        log.info("--获取密钥对成功，公钥为:"+publicKey);
+        log.info("--获取密钥对成功，公钥为:" + publicKey);
         log.info("--正在更新公钥和文件");
-        try{
+        try {
             FileGenerate.delFile("SystemKey");
-            FileGenerate.createFile("SystemKey",map.get(ECCEnum.PUBLIC_KEY.value())+"\r\n"+map.get(ECCEnum.PRIVATE_KEY.value()));
+            FileGenerate.createFile("SystemKey", map.get(ECCEnum.PUBLIC_KEY.value()) + "\r\n" + map.get(ECCEnum.PRIVATE_KEY.value()));
             log.info("--更新完成");
-        } catch (IOException e){
+        } catch (IOException e) {
             e.printStackTrace();
         } finally {
             blogMapper.updateSystemKey(map);

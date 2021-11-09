@@ -64,9 +64,9 @@ public class UserServiceImpl implements UserService {
     /**
      * 登录
      *
-     * @param userPhone
-     * @param userPassword
-     * @return
+     * @param userPhone    手机号
+     * @param userPassword 密码
+     * @return 登录结果和信息
      */
     @Override
     public Result login(String userPhone, String userPassword) throws Exception {
@@ -203,7 +203,7 @@ public class UserServiceImpl implements UserService {
 
                 map.put("userPhone", userPhone);
                 list.add(map);
-                
+
                 returnResult.setCode(EnumErrorCode.REG_SUCCESS.getCode());
                 returnResult.setMsg(EnumErrorCode.REG_SUCCESS.getMessage());
                 returnResult.setData(list);
