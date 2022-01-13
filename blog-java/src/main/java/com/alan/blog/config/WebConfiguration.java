@@ -23,7 +23,7 @@ import java.util.concurrent.Executors;
 @Configuration
 public class WebConfiguration implements WebMvcConfigurer {
 
-    private TokenInterceptor tokenInterceptor;
+    private final TokenInterceptor tokenInterceptor;
 
     /**
      * 构造方法
