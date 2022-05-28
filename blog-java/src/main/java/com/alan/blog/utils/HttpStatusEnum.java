@@ -1,3 +1,5 @@
+package com.alan.blog.utils;
+
 /**
  * <p>http所有状态码枚举</p>
  *

@@ -276,6 +276,9 @@ export default {
       }
     };
   },
+  mounted() {
+    console.log(md5("123"))
+  },
   methods: {
     resetForm(formName) {
       this.$refs['regForm'].resetFields();
